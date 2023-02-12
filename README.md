@@ -1,24 +1,31 @@
-# README
+# <居酒屋好きによる、居酒屋好きのための居酒屋が見つかる板>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+<居酒屋が大好きな人、興味があるけどあまり行った事が無い人が、全国に点在する魅力的な居酒屋を共有し合うサイト>
 
-Things you may want to cover:
+### テーマを選んだ理由
+<職業柄呑み会が多く、幹事になった時に様々な条件別等で探せるサイトがあったら便利だなと思い、このテーマにしました。>
 
-* Ruby version
+### ターゲットユーザ
+<居酒屋好き・呑み会が多い人・興味がある>
 
-* System dependencies
+### 主な利用シーン
+<呑み会場所に困った時・接待等>
 
-* Configuration
+## 実装機能リストURL
+https://docs.google.com/spreadsheets/d/1w4TU2JQ7VMRof-Ij5eazkLztXHdhrWndM2S3vhNA0F0/edit#gid=885378170
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
