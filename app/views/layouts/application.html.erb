@@ -1,16 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IzaIta</title>
+    <title>SNAKERS</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/9ece6fd7f3.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container">
+          
+          <a class="navbar-brand" href= "/public" class="lead text-white">SNAKERS</a>
+          <div class="collapse navbar-collapse">
+            
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <a href= "/admin/items" class="nav-link text-white btn btn-sm btn-dark" style="width:120px">投稿一覧</a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/customers" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:120px">会員一覧</a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/genres" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:120px">ジャンル一覧</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
+                  <p class="nav-link text-white btn btn-sm btn-dark" style="width:120px">ログアウト</p>
+                <% end %>
+              </li>
+              
+              <% elsif user_signed_in? %>
+              
+              <li class="nav-item">
+                <%#= link_to 'マイページ', public_customers_my_page_path(current_customer.id), class: 'btn btn-sm btn-dark nav-link text-white', style: 'width:100px' %>
+              </li>
+              <li class="nav-item">
+                <a href="/public/items" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:100px">投稿一覧</a>
+              </li>
+              <li class="nav-item">
+                <a href="/public/items" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:100px">お気に入り</a>
+              </li>
+              <li class="nav-item">
+                <a href="/public/cart_items" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:100px">投稿</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
+                  <p class="btn btn-sm btn-dark text-white nav-link" style="width:100px">ログアウト</p>
+                <% end %>
+              </li>
+              <li class="mr-5">
+                <p><%= current_user.name %></p>
+              </li>
+              
+              <% else %>
+              <li class="nav-item">
+                <a href="/users/sign_up" class="nav-link text-white btn btn-sm btn-dark" style="width:150px">新規登録</a>
+              </li>
+              <li class="nav-item">
+                <a href="/users/sign_in" class="nav-link text-white btn btn-sm btn-dark ml-5" style="width:150px">ログイン</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:150px">ゲストログイン</a>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
+    <footer>
+      <p class="text-center mt-5">CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>
