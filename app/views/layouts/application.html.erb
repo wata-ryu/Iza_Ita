@@ -42,13 +42,13 @@
                 <%#= link_to 'マイページ', public_customers_my_page_path(current_customer.id), class: 'btn btn-sm btn-dark nav-link text-white', style: 'width:100px' %>
               </li>
               <li class="nav-item">
-                <a href="/public/items" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:100px">投稿一覧</a>
+                <a href="/public/posts" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:100px">投稿一覧</a>
               </li>
               <li class="nav-item">
                 <a href="/public/items" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:100px">お気に入り</a>
               </li>
               <li class="nav-item">
-                <a href="/public/cart_items" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:100px">投稿</a>
+                <a href="/public/posts/new" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:100px">投　稿</a>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>

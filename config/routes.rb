@@ -1,27 +1,32 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'comments/destroy'
+    #get 'comments/destroy'
+    resources :posts, only: [:destroy]
   end
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
+    #get 'users/index'
+    #get 'users/show'
+    #get 'users/edit'
+    #get 'users/update'
     get 'users/withdraw'
+    resources :users, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/show'
-    get 'genres/edit'
-    get 'genres/update'
+    #get 'genres/index'
+    #get 'genres/show'
+    #get 'genres/edit'
+    #get 'genres/update'
+    resources :genres, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/destroy'
+    #get 'posts/index'
+    #get 'posts/show'
+    #get 'posts/destroy'
+    resources :posts, only: [:index, :show, :destroy]
   end
   namespace :admin do
-    get 'homes/top'
+    #get 'homes/top'
+    root to: "homes#top"
   end
   namespace :public do
     #get 'comments/create'

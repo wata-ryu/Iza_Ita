@@ -1,2 +1,48 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container px-5 px-sm-0">
+    <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
+    
+    <!--フラッシュメッセージの表示-->
+    <div><%= flash[:notice] %></div>
+    
+    <div class="d-flex row">
+        <div class="col-md-3 mx-auto">
+            <%= image_tag @post.get_image(100,100) %>
+            
+            <% if @post.release == true %>
+            <p>公開中</p>
+            <%  else %>
+            <p>非公開</p>
+            <% end %>
+        </div>
+        <div class="col-md-6 mx-auto">
+        　<table class="table">
+            <tbody>
+              <tr>
+                  <td><%= @post.title %></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>ジャンルは後で</td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><%= @post.alcohol %>に相性抜群！</td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><%= @post.summary %></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><%= @post.ingredient %></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><%= @post.cook %></td>
+                  <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,56 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container px-5 px-sm-0">
+    <h2 class="text-center mt-5 mb-5">投　稿　画　面</h2>
+    <div class="row d-flex">
+        
+        <!--投稿機能 -->
+        <div class="col-md-3 mx-auto">
+        <%= form_with model: @post, url: public_posts_path(@post.id) do |f| %>
+    　  <p class="text-center mt-3 mb-3">投稿画像</p>
+    　  
+        <%= f.file_field :image, accept: "image/*" %>
+          <p class="mt-5 text-center">
+            <%= f.radio_button :release, 'true' %>
+            <%= f.label :release, '公開　', value: true %>
+            
+            <%= f.radio_button :release, 'false' %>
+            <%= f.label :release, '非公開', value: false %>
+          </p>
+          <p class="mt-5 text-center"><%= f.submit '投稿する', class: 'btn btn-success' %></p>
+        </div>
+        
+        <div class="col-md-6 mx-auto">
+          <div>
+            <table class="table table-borderless table-inverse">
+              <tbody>
+                <tr>
+                  <td>タイトル</td>
+                  <td><%= f.text_field :title, class: 'form-control' %></td>
+                </tr>
+                <tr>
+                  <td>ジャンル機能は後で</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>合う酒</td>
+                  <td><%= f.text_field :alcohol, class: 'form-control' %></td>
+                </tr>
+            　　<tr>
+                  <td>概要</td>
+                  <td><%= f.text_area :summary, class: 'form-control' %></td>
+                </tr>
+                <tr>
+                  <td>材料</td>
+                  <td><%= f.text_area :ingredient, class: 'form-control' %></td>
+                </tr>
+              　<tr>
+                  <td>作り方</td>
+                  <td><%= f.text_area :cook, class: 'form-control' %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+        </div>
+        
+    </div>
+</div>
