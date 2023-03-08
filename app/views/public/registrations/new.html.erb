@@ -9,11 +9,11 @@
               <tbody>
                 <tr>
                   <td>ニックネーム</td>
-                  <td><%= f.text_field :name, class: 'form-control' %></td>
+                  <td><%= f.text_field :name, autofocus: true, class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td>メールアドレス</td>
-                  <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %></td>
+                  <td><%= f.email_field :email, autocomplete: "email", class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td>

@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "You have created book successfully."
-      redirect_to public_post_path(@post.user_id)
+      redirect_to public_post_path(@post)
     else
       render :new
     end

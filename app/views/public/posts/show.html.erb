@@ -4,41 +4,42 @@
     <!--フラッシュメッセージの表示-->
     <div><%= flash[:notice] %></div>
     
-    <div class="d-flex row">
+    <div class="row">
         <div class="col-md-3 mx-auto">
-            <%= image_tag @post.get_image(100,100) %>
+            <p class="text-center"><%= image_tag @post.image, size: "200x200" %></p>
             
             <% if @post.release == true %>
-            <p>公開中</p>
+            <p class="text-center">公開中</p>
             <%  else %>
-            <p>非公開</p>
+            <p class="text-center">非公開</p>
             <% end %>
         </div>
+        
         <div class="col-md-6 mx-auto">
-        　<table class="table">
+        　<table class="table table-borderless">
             <tbody>
               <tr>
-                  <td><%= @post.title %></td>
+                  <td><h3>#　<%= @post.title %></h3></td>
                   <td></td>
               </tr>
               <tr>
-                  <td>ジャンルは後で</td>
+                  <td>#　<%= @post.genre.name %></td>
                   <td></td>
               </tr>
               <tr>
-                  <td><%= @post.alcohol %>に相性抜群！</td>
+                  <td>#　<%= @post.alcohol %>に相性抜群！</td>
                   <td></td>
               </tr>
               <tr>
-                  <td><%= @post.summary %></td>
+                  <td>#　<%= @post.summary %></td>
                   <td></td>
               </tr>
               <tr>
-                  <td><%= @post.ingredient %></td>
+                  <td>#　<%= @post.ingredient %></td>
                   <td></td>
               </tr>
               <tr>
-                  <td><%= @post.cook %></td>
+                  <td>#　<%= @post.cook %></td>
                   <td></td>
               </tr>
             </tbody>

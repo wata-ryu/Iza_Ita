@@ -1,2 +1,25 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container px-5 px-sm-0">
+    <h2 class="mt-5 mb-5 text-center">マイページ</h2>
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <table class="table table-borderless table-inverse">
+              <tbody>
+                <tr>
+                  <td><%= image_tag @user.get_profile_image(120,120) %></td>
+                  <td>ニックネーム</td>
+                  <td><%= @user.name %></td>
+                  <td><%= link_to '編集する', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white ml-5 w-50' %></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>自己紹介</td>
+                  <td><%= @user.introduction %></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+      <h2 class="mt-5 mb-5 text-center"><%= current_user.name %>の投稿一覧</h2>
+    </div>
+</div>
