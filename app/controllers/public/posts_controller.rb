@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "You have created book successfully."
+      flash[:notice] = "投稿が成功しました！"
       redirect_to public_post_path(@post)
     else
       render :new
@@ -27,17 +27,29 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+     if @post.update(post_params)
+      #更新成功のflash message
+      flash[:notice] = "You have updated book successfully."
+      redirect_to public_post_path(@post)
+    else
+      render:edit
+    end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to public_post_path(@post)
   end
   
   private
   #ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release)
+    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id)
   end
 end

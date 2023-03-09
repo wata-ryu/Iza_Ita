@@ -1,18 +1,18 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
-    @user = User.find(current_user.id)
-    render:edit
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
     if @user.update(user_params)
     #user情報更新成功のflash message
-      flash[:notice] = "You have updated user successfully."
+      flash[:notice] = "プロフィールが更新されました！"
       redirect_to public_user_path(current_user.id)
     else
       render:edit

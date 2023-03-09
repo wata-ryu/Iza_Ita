@@ -1,2 +1,67 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container px-5 px-sm-0">
+    <h2 class="text-center mt-5 mb-5">投稿編集画面</h2>
+    <!--バリデーションによるエラー表示 -->
+    <% if @post.errors.any? %>
+      <p class="text-danger"><%= @post.errors.count %>件のエラーが発生しました！</p>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li class="text-danger"><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    
+    <!--フラッシュメッセージの表示-->
+    <p class="text-center text-success"><%= flash[:notice] %></p>
+    
+    <%= form_with model: @post, method: :patch, url: public_post_path(current_user.id) do |f| %>
+    <div class="row">
+        <div class="col-md-3 mx-auto">
+            <div>
+                <p class="text-center mt-5 mb-3">投稿画像</p>
+                <%= f.file_field :image, placeholder: "プロフィール画像", accept: "image/*" %>
+            </div>
+            <p class="text-center mt-5">
+                <%= f.radio_button :is_active, :true %>
+                <%= f.label :is_active_true, "公開　" %>
+                <%= f.radio_button :is_active, :false %>
+                <%= f.label :is_active_false, "非公開" %>
+            </p>
+            <p class="text-center mt-5">
+                <%= f.submit "更新する", class: 'btn btn-success', style: 'width:100px' %>
+            </p>
+        </div>
+        
+        <div class="col-md-6 mx-auto">
+        　<table class="table table-borderless">
+            <tbody>
+              <tr>
+                  <td>タイトル</td>
+                  <td><%= f.text_field :title, autofocus: true, id:"inputTitle", class: 'form-control' %></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>ジャンル</td>
+                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></td>
+              </tr>
+              <tr>
+                  <td>合う酒</td>
+                  <td><%= f.text_field :alcohol, id:"inputAlcohol", class: 'form-control' %>に相性抜群！</td>
+              </tr>
+              <tr>
+                  <td>概要</td>
+                  <td><%= f.text_field :summary, id:"inputSummary", class: 'form-control' %></td>
+              </tr>
+              <tr>
+                  <td>材料</td>
+                  <td><%= f.text_field :ingredient, id:"inputIngredient", class: 'form-control' %></td>
+              </tr>
+              <tr>
+                  <td>作り方</td>
+                  <td><%= f.text_area :cook, id:"inputCook", class: 'form-control' %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <% end %>
+</div>

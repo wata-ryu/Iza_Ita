@@ -1,19 +1,26 @@
 <div class="container px-5 px-sm-0">
     <h2 class="mt-5 mb-5 text-center">マイページ</h2>
+    <!--フラッシュメッセージの表示-->
+    <p class="text-center text-success"><%= flash[:notice] %></p>
     <div class="row mb-5">
-        <div class="col-md-8 mx-auto">
-            <table class="table table-borderless table-inverse">
+        <div class="col-md-3">
+          <%= image_tag @user.get_profile_image(200,200) %>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td><%= image_tag @user.get_profile_image(120,120) %></td>
-                  <td>ニックネーム</td>
-                  <td><%= @user.name %></td>
-                  <td><%= link_to '編集する', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white ml-5 w-50' %></td>
+                  <td scope="col" style="width: 30%">ニックネーム</td>
+                  <td scope="col" style="width: 80%"><%= @user.name %></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>自己紹介</td>
+                  <td><%= @user.introduction %></td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>自己紹介</td>
-                  <td><%= @user.introduction %></td>
+                  <td><%= link_to '編集する', edit_public_user_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %></td>
                 </tr>
               </tbody>
             </table>

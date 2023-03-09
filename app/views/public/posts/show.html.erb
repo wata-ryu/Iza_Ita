@@ -2,16 +2,16 @@
     <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
     
     <!--フラッシュメッセージの表示-->
-    <div><%= flash[:notice] %></div>
+    <p class="text-center text-success"><%= flash[:notice] %></p>
     
     <div class="row">
         <div class="col-md-3 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "200x200" %></p>
             
             <% if @post.release == true %>
-            <p class="text-center">公開中</p>
+            <p class="text-center text-primary">公開中</p>
             <%  else %>
-            <p class="text-center">非公開</p>
+            <p class="text-center text-danger">非公開</p>
             <% end %>
         </div>
         
@@ -20,7 +20,7 @@
             <tbody>
               <tr>
                   <td><h3>#　<%= @post.title %></h3></td>
-                  <td></td>
+                  <td><%= link_to '編集する', edit_public_post_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %></td>
               </tr>
               <tr>
                   <td>#　<%= @post.genre.name %></td>

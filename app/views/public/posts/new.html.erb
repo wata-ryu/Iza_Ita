@@ -1,11 +1,11 @@
 <div class="container px-5 px-sm-0">
-    <h2 class="text-center mt-5 mb-5">投　稿　画　面</h2>
+    <h2 class="text-center mt-5 mb-5">投稿画面</h2>
     <!--バリデーションによるエラー表示 -->
     <% if @post.errors.any? %>
-      <%= @post.errors.count %>件のエラーが発生しました
+      <p class="text-danger"><%= @post.errors.count %>件のエラーが発生しました！</p>
       <ul>
         <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="text-danger"><%= message %></li>
         <% end %>
       </ul>
     <% end %>
@@ -13,7 +13,7 @@
       <%= form_with model: @post, url: public_posts_path do |f| %>
       <div class="row">
         <div class="col-md-3 mx-auto">
-          <p class="text-center mt-3 mb-3">投稿画像</p>
+          <p class="text-center mt-5 mb-3">投稿画像</p>
           <%= f.file_field :image, accept: "image/*" %>
           <p class="mt-5 text-center">
             <%= f.radio_button :release, 'true' %>
@@ -25,7 +25,7 @@
           <p class="mt-5 text-center"><%= f.submit '投稿する', class: 'btn btn-success' %></p>
         </div>
         
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
             <table class="table table-borderless table-inverse">
               <tbody>
                 <tr>
@@ -35,11 +35,11 @@
                 <tr>
                   <td>ジャンル</td>
                 <!--%= f.collection_select :保存先のカラム名, テーブル（モデル）名.all, :実際にDBに保存させるカラム名, :選択肢に用いるカラム名, include_blank: "選択して下さい" %-->
-                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></td>
+                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--", class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td>合う酒</td>
-                  <td><%= f.text_field :alcohol, class: 'form-control', placeholder:"ビール、ハイボール" %></td>
+                  <td><%= f.text_field :alcohol, class: 'form-control', placeholder:"ビール、ハイボール" %>に相性抜群！</td>
                 </tr>
             　　<tr>
                   <td>概要</td>
