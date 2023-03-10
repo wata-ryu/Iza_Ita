@@ -3,20 +3,21 @@
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
     <div class="row mb-5">
-        <div class="col-md-3">
-          <%= image_tag @user.get_profile_image(200,200) %>
-        </div>
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-8 mx-auto">
             <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td scope="col" style="width: 30%">ニックネーム</td>
-                  <td scope="col" style="width: 80%"><%= @user.name %></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>自己紹介</td>
-                  <td><%= @user.introduction %></td>
+                  <td style="width: 25%"><%= image_tag @user.get_profile_image(200,200), class: 'rounded-circle' %></td>
+                  <td style="width: 25%px">
+                    <h5>ニックネーム</h5>
+                    <br>
+                    <h5>自己紹介</h5>
+                  </td>
+                  <td style="width: 50%">
+                    <h5><%= @user.name %></h5>
+                    <br>
+                    <h5><%= @user.introduction %></h5>
+                  </td>
                 </tr>
                 <tr>
                   <td></td>
@@ -27,6 +28,6 @@
         </div>
     </div>
     <div>
-      <h2 class="mt-5 mb-5 text-center"><%= current_user.name %>の投稿一覧</h2>
+      <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の投稿一覧</h2>
     </div>
 </div>

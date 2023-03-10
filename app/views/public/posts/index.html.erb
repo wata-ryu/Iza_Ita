@@ -1,28 +1,25 @@
 <div class="container px-5 px-sm-0">
-    <h2 class="text-center mt-5 mb-5">みんなの投稿</h2>
-    
-    <!--フラッシュメッセージの表示-->
-    <p class="text-center text-success"><%= flash[:notice] %></p>
-    
+    <h2 class="text-center mt-3 mb-3">みんなの投稿</h2>
+    <% @posts.each do |post| %>
     <div class="row">
         <div class="col-md-3 mx-auto">
         </div>
-        
-        <% @posts.each do |post| %>
-        <div class="col-md-6 mx-auto offset-md-1 mt-3">
-          <div>
+        <div class="col-md-6 mx-auto mt-3">
+          <div class="border-top border-bottom">
             　<table class="table table-borderless">
                 <tbody>
                   <tr>
-                    <td><!--userごとのプロフィール画像を取得-->
+                    <td style="width: 25%"><!--userごとのプロフィール画像を取得-->
                       <%= link_to public_user_path(post.user.id) do %>
-                        <%= image_tag post.user.get_profile_image(100,100) %>
+                      <p class="text-center">
+                        <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+                      </p>
                       <% end %><br>
-                      <%= post.user.name %>
+                      <p class="text-center"><%= post.user.name %></p>
                     </td>
-                    <td><%= image_tag post.image, size: "100x100" %></td>
+                    <td style="width: 25%"><%= image_tag post.image, size: "120x120" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                    <td>
+                    <td style="width: 50%">
                         <h3> <%= link_to post.title, public_post_path(post) %></h3><br>
                         # <%= post.genre.name %><br>
                         # <%= post.alcohol %>に相性抜群！
@@ -37,6 +34,6 @@
               </table>
           </div>
         </div>
-        <% end %>
     </div>
+    <% end %>
 </div>
