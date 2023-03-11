@@ -1,9 +1,9 @@
 <div class="container px-5 px-sm-0">
-    <h2 class="mt-5 mb-5 text-center">マイページ</h2>
+    <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の部屋</h2>
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
     <div class="row mb-5">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-10 mx-auto">
             <table class="table table-borderless">
               <tbody>
                 <tr>
@@ -21,7 +21,12 @@
                 </tr>
                 <tr>
                   <td></td>
-                  <td><%= link_to '編集する', edit_public_user_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %></td>
+                  <td>
+                    <% if @user == current_user %>
+                      <%= link_to '編　集', edit_public_user_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
+                      <% else %>
+                    <% end %>
+                  </td>
                 </tr>
               </tbody>
             </table>

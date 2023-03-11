@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-md-3 mx-auto">
         </div>
-        <div class="col-md-6 mx-auto mt-3">
-          <div class="border-top border-bottom">
+        <div class="col-md-9 mx-auto mt-3">
+          <div class="border-top">
             　<table class="table table-borderless">
                 <tbody>
                   <tr>
@@ -17,18 +17,20 @@
                       <% end %><br>
                       <p class="text-center"><%= post.user.name %></p>
                     </td>
-                    <td style="width: 25%"><%= image_tag post.image, size: "120x120" %></td>
+                    <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                     <td style="width: 50%">
                         <h3> <%= link_to post.title, public_post_path(post) %></h3><br>
                         # <%= post.genre.name %><br>
                         # <%= post.alcohol %>に相性抜群！
+                        # <%= truncate(post.summary, length: 10) %>...
                     </td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td><%= post.created_at.to_s(:datetime_jp) %></td>
                   </tr>
                 </tbody>
               </table>

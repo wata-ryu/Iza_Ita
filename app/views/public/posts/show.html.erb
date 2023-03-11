@@ -1,12 +1,29 @@
 <div class="container px-5 px-sm-0">
     <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
+    <div class="mx-auto">
+      <% if @post.user == current_user %>
+      <button class="btn btn-sm btn-success text-center">
+        <%= link_to '編　集', edit_public_post_path, class: 'nav-link text-white', style: 'width:80px' %>
+        <% else %>
+      </button>
+      <% end %>
+      
+      <% if @post.user == current_user %>
+      <button class="btn btn-sm btn-danger">
+          <!--削除機能ボタン-->
+          <%= link_to(public_post_path(@post), method: :delete, class: 'nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
+          <span>削　除</span>
+          <% end %>
+      </button>
+      <% end %>
+    </div>
     
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
     
     <div class="row">
-        <div class="col-md-3 mx-auto">
-            <p class="text-center"><%= image_tag @post.image, size: "200x200" %></p>
+        <div class="col-md-6 mx-auto">
+            <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
             
             <% if @post.release == true %>
             <p class="text-center text-primary">公開中</p>
@@ -20,27 +37,21 @@
             <tbody>
               <tr>
                   <td><h3>#　<%= @post.title %></h3></td>
-                  <td><%= link_to '編集する', edit_public_post_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %></td>
               </tr>
               <tr>
                   <td>#　<%= @post.genre.name %></td>
-                  <td></td>
               </tr>
               <tr>
                   <td>#　<%= @post.alcohol %>に相性抜群！</td>
-                  <td></td>
               </tr>
               <tr>
                   <td>#　<%= @post.summary %></td>
-                  <td></td>
               </tr>
               <tr>
                   <td>#　<%= @post.ingredient %></td>
-                  <td></td>
               </tr>
               <tr>
                   <td>#　<%= @post.cook %></td>
-                  <td></td>
               </tr>
             </tbody>
           </table>

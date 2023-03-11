@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
      if @post.update(post_params)
       #更新成功のflash message
-      flash[:notice] = "You have updated book successfully."
+      flash[:notice] = "更新が成功しました！"
       redirect_to public_post_path(@post)
     else
       render:edit
@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_post_path(@post)
+    redirect_to public_posts_path
   end
   
   private
