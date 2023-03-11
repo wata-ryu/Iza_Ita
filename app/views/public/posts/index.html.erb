@@ -22,14 +22,18 @@
                     <td style="width: 50%">
                         <h3> <%= link_to post.title, public_post_path(post) %></h3><br>
                         # <%= post.genre.name %><br>
-                        # <%= post.alcohol %>に相性抜群！
-                        # <%= truncate(post.summary, length: 10) %>...
+                        # <%= post.alcohol %>に相性抜群！<br>
+                        # <%= truncate(post.summary, length: 20) %>
                     </td>
                     <td></td>
                   </tr>
                   <tr>
                     <td></td>
-                    <td></td>
+                    <td>
+                      <!--いいね機能-->
+                      
+                      <p><%= post.comments.count %> コメント</p>
+                    </td>
                     <td><%= post.created_at.to_s(:datetime_jp) %></td>
                   </tr>
                 </tbody>

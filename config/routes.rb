@@ -1,58 +1,46 @@
 Rails.application.routes.draw do
+  
+  namespace :public do
+    resources :bookmarks, only: [:index]
+  end
+  
   namespace :admin do
-    #get 'comments/destroy'
     resources :posts, only: [:destroy]
   end
+  
   namespace :admin do
-    #get 'users/index'
-    #get 'users/show'
-    #get 'users/edit'
-    #get 'users/update'
     get 'users/withdraw'
     resources :users, only: [:index, :show, :edit, :update]
   end
+  
   namespace :admin do
-    #get 'genres/index'
-    #get 'genres/create'
-    #get 'genres/edit'
-    #get 'genres/update'
     resources :genres, only: [:index, :create, :edit, :update]
   end
+  
   namespace :admin do
-    #get 'posts/index'
-    #get 'posts/show'
-    #get 'posts/destroy'
     resources :posts, only: [:index, :show, :destroy]
   end
+  
   namespace :admin do
-    #get 'homes/top'
     root to: "homes#top"
   end
+  
   namespace :public do
-    #get 'comments/create'
-    #get 'comments/destroy'
-    resources :comments, only: [:create, :destroy]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      #単数形にすると、/:idがURLに含まれなくなる(1人のユーザーは1つの投稿に対して1回しかいいねできないという仕様であるため)
+      resource :bookmarks, only: [:create, :destroy]
+      #コメントは何度もできるように複数形
+      resources :comments, only: [:create, :destroy]
+    end
   end
+  
   namespace :public do
-    #get 'posts/new'
-    #get 'posts/create'
-    #get 'posts/index'
-    #get 'posts/show'
-    #get 'posts/edit'
-    #get 'posts/update'
-    #get 'posts/destroy'
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  end
-  namespace :public do
-    #get 'users/show'
-    #get 'users/edit'
-    #get 'users/update'
     get 'users/unsubscribe'
     get 'users/withdraw'
     resources :users, only: [:show, :edit, :update]
   end
+  
   namespace :public do
-    #get 'homes/top'
     root to: "homes#top"
   end
   

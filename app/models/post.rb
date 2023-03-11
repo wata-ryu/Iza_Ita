@@ -15,4 +15,8 @@ class Post < ApplicationRecord
     validates :ingredient, presence: true, length: { in: 2..100 }
     validates :cook, presence: true, length: { in: 2..200 }
     validates :image, presence: true
+    
+    def bookmarked_by?(user)
+      bookmarks.exists?(user_id: user.id)
+    end
 end
