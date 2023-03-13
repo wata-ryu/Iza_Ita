@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   def index
     #@posts = Post.all
     @genres = Genre.all
-    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all
+    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all.order("created_at DESC")
   end
 
   def show

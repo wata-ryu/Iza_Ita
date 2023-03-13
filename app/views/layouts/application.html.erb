@@ -20,6 +20,7 @@
           <div class="collapse navbar-collapse">
             
             <ul class="navbar-nav ml-auto">
+            <!--ログイン後管理者ヘッダー-->
             <% if admin_signed_in? %>
               <li class="nav-item">
                 <a href= "/admin/items" class="nav-link text-white btn btn-sm btn-dark" style="width:120px">投稿一覧</a>
@@ -35,7 +36,7 @@
                   <p class="nav-link text-white btn btn-sm btn-dark" style="width:120px">ログアウト</p>
                 <% end %>
               </li>
-              
+              <!--ログイン後ユーザー共通ヘッダー-->
               <% elsif user_signed_in? %>
               <li class="nav-item">
                 <a href="/public/posts" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:100px">全体投稿</a>
@@ -54,17 +55,22 @@
               <li class="nav-item">
                 <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-dark nav-link text-white ml-5 mr-5', style: 'width:100px' %>
               </li>
-              <li class="mr-5">
-                <p><%= current_user.name %></p>
-              </li>
-              
+              <!--キーワード検索機能ー-->
               <div class="search_form">
-              <%= form_with url: search_path, local: true, method: :get do |f| %>
-                <%= f.text_field :word %>
-                <%= f.select :range, options_for_select([['タイトル検索'], ['ユーザー検索']]) %>
-                <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %>
-                <%= f.submit "検索", class: "btn btn-primary" %>
-              <% end %>
+                <%= form_with url: search_path, local: true, method: :get do |f| %>
+                <table class="table table-borderless table-inverse">
+                  <tbody>
+                    <tr>
+                      <td><%= f.select :range, options_for_select([['タイトル検索'], ['ユーザー検索']]) %></td>
+                      <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
+                    </tr>
+                    <tr>
+                      <td><%= f.text_field :word %></td>
+                      <td><%= f.submit "検索", class: "btn btn-primary" %></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <% end %>
               </div>
               
               <% else %>

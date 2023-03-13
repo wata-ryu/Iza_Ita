@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    get 'users/withdraw'
+    patch 'users/withdraw'
     resources :users, only: [:index, :show, :edit, :update]
   end
   
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   
   namespace :public do
     get 'users/unsubscribe'
-    get 'users/withdraw'
+    patch 'users/withdraw'
     resources :users, only: [:show, :edit, :update]
   end
   

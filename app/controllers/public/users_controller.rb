@@ -23,6 +23,13 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
+    #退会機能
+    @user = User.find(current_user.id)
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会しました_:(´ཀ`」 ∠):"
+    redirect_to public_root_path
   end
   
   private
