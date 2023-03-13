@@ -2,6 +2,11 @@ class Post < ApplicationRecord
     #アソシエーション
     has_many :bookmarks, dependent: :destroy
     has_many :comments, dependent: :destroy
+    
+    #ジャンル検索機能のアソシエーション
+    has_many :post_genres, dependent: :destroy
+    has_many :genres, through: :post_genres, dependent: :destroy
+    
     belongs_to :user
     belongs_to :genre
     
@@ -18,5 +23,25 @@ class Post < ApplicationRecord
     
     def bookmarked_by?(user)
       bookmarks.exists?(user_id: user.id)
+    end
+    
+    # 検索方法分岐
+    def self.looks(search, word)
+      #完全一致
+      if search == "perfect_match"
+        @post = Post.where("title LIKE?","#{word}")
+      #前方一致
+      elsif search == "forward_match"
+        @post = Post.where("title LIKE?","#{word}%")
+      #前方一致
+      elsif search == "backward_match"
+        @post = Post.where("title LIKE?","%#{word}")
+      #前方一致
+      elsif search == "partial_match"
+        @post = Post.where("title LIKE?","%#{word}%")
+      
+      else
+        @post = Post.all
+      end
     end
 end

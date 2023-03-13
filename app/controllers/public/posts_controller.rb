@@ -18,7 +18,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    @genres = Genre.all
+    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all
   end
 
   def show
@@ -37,9 +39,9 @@ class Public::PostsController < ApplicationController
       #更新成功のflash message
       flash[:notice] = "更新が成功しました！"
       redirect_to public_post_path(@post)
-    else
-      render:edit
-    end
+     else
+        render:edit
+     end
   end
 
   def destroy
@@ -51,6 +53,6 @@ class Public::PostsController < ApplicationController
   private
   #ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id)
+    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id )
   end
 end

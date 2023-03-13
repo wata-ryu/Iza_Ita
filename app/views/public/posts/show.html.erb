@@ -1,20 +1,19 @@
 <div class="container px-5 px-sm-0">
     <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
-    <div class="mx-auto">
+    <div class="row">
+      <!--ログインユーザーのみ編集、削除ボタンを表示-->
       <% if @post.user == current_user %>
-      <button class="btn btn-sm btn-success text-center">
-        <%= link_to '編　集', edit_public_post_path, class: 'nav-link text-white', style: 'width:80px' %>
-        <% else %>
-      </button>
-      <% end %>
-      
-      <% if @post.user == current_user %>
-      <button class="btn btn-sm btn-danger">
-          <!--削除機能ボタン-->
-          <%= link_to(public_post_path(@post), method: :delete, class: 'nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
+        <div class="col-md-1 mx-auto">
+        <!--編集機能ボタン-->
+          <%= link_to '編　集', edit_public_post_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:80px' %>
+        </div>
+        <!--削除機能ボタン-->
+        <div class="col-md-1 mx-auto">
+        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
           <span>削　除</span>
-          <% end %>
-      </button>
+        <% end %>
+        </div>
+        <% else %>
       <% end %>
     </div>
     
@@ -29,16 +28,19 @@
                 <%= link_to public_post_bookmarks_path(@post), method: :delete do %>
                   <p class="text-center text-dark">♥ <%= @post.bookmarks.count %> いいね</p>
                 <% end %>
-              <% else %>
+            <% else %>
                 <%= link_to public_post_bookmarks_path(@post), method: :post do %>
                   <p class="text-center text-dark">♡ <%= @post.bookmarks.count %> いいね</p>
                 <% end %>
             <% end %>
-            
-            <% if @post.release == true %>
-            <p class="text-center text-primary">公開中</p>
+            <!--ログインユーザーのみ公開ステータスを表示-->
+            <% if @post.user == current_user %>
+              <% if @post.release == true %>
+              <p class="text-center text-primary">公開中</p>
+              <%  else %>
+              <p class="text-center text-danger">非公開</p>
+              <% end %>
             <%  else %>
-            <p class="text-center text-danger">非公開</p>
             <% end %>
         </div>
         

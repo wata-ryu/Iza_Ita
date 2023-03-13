@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get "search" => "searches#search"
+  
   namespace :public do
     resources :bookmarks, only: [:index]
   end
