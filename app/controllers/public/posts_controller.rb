@@ -18,8 +18,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    #@posts = Post.all
     @genres = Genre.all
+    #ジャンル検索機能および全体一覧
     @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all.order("created_at DESC")
   end
 
@@ -53,6 +53,6 @@ class Public::PostsController < ApplicationController
   private
   #ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id )
+    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id, genre_ids: [] )
   end
 end

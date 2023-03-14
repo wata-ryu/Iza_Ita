@@ -16,3 +16,7 @@ Genre.create([
     { name: '甘味類'},
     { name: 'その他'},
     ])
+
+#管理者でログイン機能を実装しない場合はここで定義してrake db:seedを実行する
+#!をつけることで途中でエラーを吐き出してくれる
+Admin.create!(email: 'watanabe389274@icloud.com', password: 'watanabe')

@@ -20,23 +20,23 @@
           <div class="collapse navbar-collapse">
             
             <ul class="navbar-nav ml-auto">
-            <!--ログイン後管理者ヘッダー-->
+            <!--ログイン後、管理者用ヘッダー-->
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <a href= "/admin/items" class="nav-link text-white btn btn-sm btn-dark" style="width:120px">投稿一覧</a>
+                <a href= "/admin/posts" class="nav-link text-white btn btn-sm btn-dark" style="width:120px">投稿一覧</a>
               </li>
               <li class="nav-item">
-                <a href="/admin/customers" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:120px">会員一覧</a>
+                <a href="/admin/users" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:120px">会員一覧</a>
               </li>
               <li class="nav-item">
-                <a href="/admin/genres" class="nav-link text-white btn btn-sm btn-dark ml-5 mr-5" style="width:120px">ジャンル一覧</a>
+                <a href="/admin/genres" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:120px">ジャンル一覧</a>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
                   <p class="nav-link text-white btn btn-sm btn-dark" style="width:120px">ログアウト</p>
                 <% end %>
               </li>
-              <!--ログイン後ユーザー共通ヘッダー-->
+              <!--ログイン後、ユーザー共通ヘッダー-->
               <% elsif user_signed_in? %>
               <li class="nav-item">
                 <a href="/public/posts" class="nav-link text-white btn btn-sm btn-dark mr-5" style="width:100px">全体投稿</a>
@@ -61,7 +61,7 @@
                 <table class="table table-borderless table-inverse">
                   <tbody>
                     <tr>
-                      <td><%= f.select :range, options_for_select([['タイトル検索'], ['ユーザー検索']]) %></td>
+                      <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
                       <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
                     </tr>
                     <tr>

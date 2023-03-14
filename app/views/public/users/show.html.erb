@@ -55,7 +55,7 @@
                           <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                           <td style="width: 50%">
                               <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                              # <%= post.genre.name %><br>
+                              # <%= post.genres.name %><br>
                               # <%= post.alcohol %>に相性抜群！<br>
                               # <%= truncate(post.summary, length: 40) %>
                           </td>

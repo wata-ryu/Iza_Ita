@@ -1,2 +1,44 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container px-5 px-sm-0">
+<h2 class="text-center mt-3 mb-3">みんなの投稿</h2>
+<!--ジャンル検索機能-->
+
+    <% @posts.each do |post| %>
+    <div class="row">
+        <div class="col-md-9 mx-auto mt-3">
+          <div class="border-top">
+            　<table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%">
+                      <!--userごとのプロフィール画像を取得-->
+                      <%= link_to admin_user_path(post.user.id) do %>
+                      <p class="text-center">
+                        <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+                      </p>
+                      <% end %><br>
+                      <p class="text-center"><%= post.user.name %></p>
+                    </td>
+                    <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
+                    <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+                    <td style="width: 50%">
+                        <h3> <%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
+                        # <%= post.genre.name %><br>
+                        # <%= post.alcohol %>に相性抜群！<br>
+                        # <%= truncate(post.summary, length: 40) %>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                    </td>
+                    <td><%= post.created_at.to_s(:datetime_jp) %></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+    <% end %>
+</div>

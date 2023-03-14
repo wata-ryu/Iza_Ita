@@ -26,16 +26,16 @@ class User < ApplicationRecord
   
   # 検索方法分岐
   def self.looks(search, word)
-      #完全一致
+    #完全一致
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
-      #前方一致
+    #前方一致
     elsif search == "forward_match"
       @user = User.where("name LIKE?","#{word}%")
-      #後方一致
+    #後方一致
     elsif search == "backward_match"
       @user = User.where("name LIKE?","%#{word}")
-      #部分一致
+    #部分一致
     elsif search == "partial_match"
       @user = User.where("name LIKE?","%#{word}%")
     else

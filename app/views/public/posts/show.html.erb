@@ -71,8 +71,14 @@
     </div>
     <div class="mx-auto border-top">
       <h4 class="text-center">コメント　<%= @post.comments.count %> 件</h4>
+      <div>
+        <!--コメント機能-->
+        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
+          <%= f.text_area :comment, rows: '5', autofocus: true, class: '', placeholder: "コメントはここに" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
       <% @post.comments.each do |comment| %>
-        
         <p><%= image_tag comment.user.get_profile_image(80,80), class: 'rounded-circle' %></p>
         <%= comment.user.name %>
         <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
@@ -82,13 +88,7 @@
         <% end %>
       <% end %>
     </div>
-    <div>
-      <!--コメント機能-->
-      <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントはここに" %>
-        <%= f.submit "送信" %>
-      <% end %>
-    </div>
+    
     <div>
       ああああああああ
     </div>
