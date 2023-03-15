@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get "bookmarks" => "searches#search"
+  
   get "search" => "searches#search"
   
   namespace :public do
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
+    get 'users/unsubscribe'
     patch 'users/withdraw'
     resources :users, only: [:index, :show, :edit, :update]
   end
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
   
   namespace :public do
     root to: "homes#top"
+      
   end
   
   # 顧客用

@@ -8,7 +8,13 @@
             <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td style="width: 25%"><%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %></td>
+                  <td style="width: 25%">
+                    <%= link_to public_user_path(user.id) do %>
+                      <p class="text-center">
+                        <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
+                      </p>
+                    <% end %>
+                  </td>
                   <td style="width: 25%px">
                     <h5>ニックネーム</h5>
                     <br>

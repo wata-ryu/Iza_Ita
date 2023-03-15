@@ -14,13 +14,12 @@
         <% end %>
         </div>
         <% else %>
-      <% end %>
-      <!--管理者のみ削除ボタンを表示-->
-      <div class="col-md-1 mx-auto">
-        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
-          <span>削　除︎</span>
+        <div class="col-md-1 mx-auto">
+        <%= link_to(admin_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
+          <span>強制削除︎</span>
         <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
     
     <!--フラッシュメッセージの表示-->
@@ -35,10 +34,10 @@
             <% if @post.user == current_user %>
               <% if @post.release == true %>
               <p class="text-center text-primary">公開中</p>
-              <%  else %>
+              <% else %>
               <p class="text-center text-danger">非公開</p>
               <% end %>
-            <%  else %>
+            <% else %>
             <% end %>
         </div>
         
@@ -67,30 +66,34 @@
           </table>
         </div>
     </div>
-    <div class="mx-auto border-top">
-      <h4 class="text-center">コメント　<%= @post.comments.count %> 件</h4>
-      <div>
-        <!--コメント機能-->
-        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
-          <%= f.text_area :comment, rows: '5', autofocus: true, class: '', placeholder: "コメントはここに" %>
-          <%= f.submit "送信" %>
-        <% end %>
-      </div>
+    <div class="col-md-8 mx-auto border-top">
+      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件</h4>
       <% @post.comments.each do |comment| %>
-        <p><%= image_tag comment.user.get_profile_image(80,80), class: 'rounded-circle' %></p>
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-        
-        <!--コメント削除機能、ログインユーザーか管理者のみ表示-->
-        <% if comment.user == current_user %>
-          <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
-        　<% else current_user.admin? %>
-          　<%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
-          <% end %>
-        <% end %>
-    </div>
-    
-    <div>
-      
+      <div class="border-top">
+        　<table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td style="width: 25%">
+                  <p class="text-center"><%= image_tag comment.user.get_profile_image(80,80), class: 'rounded-circle' %></p>
+                  <p class="text-center"><%= comment.user.name %></p>
+                </td>
+                <td style="width: 50%">
+                  <%= comment.comment %><br>
+                  <br>
+                  <%= comment.created_at.to_s(:datetime_jp) %>
+                </td>
+                <td style="width: 25%">
+                    <!--コメント削除機能、ログインユーザーのみ表示-->
+                  <% if comment.user == current_user %>
+                    <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
+                      <span>削　除</span>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <% end %>
     </div>
 </div>

@@ -2,6 +2,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    #お気に入り一覧
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
+    @bookmark_list = Post.find(bookmarks)
   end
 
   def edit
@@ -27,6 +30,10 @@ class Public::UsersController < ApplicationController
     @user = User.find(current_user.id)
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
+    #論理削除は、アソシエーションでは消えないので、消したいものにdestroy_allをやる！
+    @user.posts.destroy_all
+    @user.comments.destroy_all
+    @user.bookmarks.destroy_all
     reset_session
     flash[:notice] = "退会しました_:(´ཀ`」 ∠):"
     redirect_to public_root_path

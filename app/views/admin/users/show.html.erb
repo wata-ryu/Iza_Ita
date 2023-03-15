@@ -2,7 +2,11 @@
     <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の部屋</h2>
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
-    <div class="row mb-5">
+    <!--強制退会機能-->
+    <%# if user_signed_in? && current_user.admin? %>
+        <p class="text-center"><%= link_to "退　会", admin_users_unsubscribe_path, class: 'btn btn-danger mt-3', style: 'width:100px' %></p>
+    <%# end %>
+    <div class="row border-bottom">
         <div class="col-md-10 mx-auto">
             <table class="table table-borderless">
               <tbody>
@@ -32,12 +36,12 @@
             </table>
         </div>
     </div>
-    <div class=row>
+    <div class="row">
       <div class="col-md-10 mx-auto">
-      <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の投稿一覧</h2>
+      <h2 class="text-center mt-3 mb-3"><%= @user.name %>の投稿一覧</h2>
           <% @posts.each do |post| %>
           <div class="row">
-              <div class="col-md-10 mx-auto mt-3">
+              <div class="col-md-10 mx-auto">
                 <div class="border-top">
                   　<table class="table table-borderless">
                       <tbody>

@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  
   def index
     @users = User.page(params[:page])
   end
@@ -15,6 +16,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def withdraw
+    #退会機能
+    @user = User.find(user.id)
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "強制退会させました( ´Д`)y━･~~"
+    redirect_to admin_root_path
   end
   
   private
