@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   #サインイン後の場所指定
   def after_sign_in_path_for(resource)
-    public_posts_path
+    public_user_path(current_user.id)
   end
   
   protected

@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    get 'users/unsubscribe'
-    patch 'users/withdraw'
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show] do
+      #admin側からの削除機能、user側からと違いユーザーの指定が必要なのでここにネストする
+      get :unsubscribe
+      patch :withdraw
+    end
   end
   
   namespace :admin do
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
   
   namespace :public do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      #単数形にすると、/:idがURLに含まれなくなる(1人のユーザーは1つの投稿に対して1回しかいいねできないという仕様であるため)
+      #いいね機能。単数形にすると、/:idがURLに含まれなくなる(1人のユーザーは1つの投稿に対して1回しかいいねできないという仕様であるため)
       resource :bookmarks, only: [:create, :destroy]
       #コメントは何度もできるように複数形
       resources :comments, only: [:create, :destroy]

@@ -14,15 +14,23 @@ class Admin::UsersController < ApplicationController
 
   def update
   end
+  
+  def unsubscribe
+    #退会機能、adminが強制退会させるときはユーザーidを含める
+    @user = User.find(params[:user_id])
+  end
 
   def withdraw
-    #退会機能
-    @user = User.find(user.id)
+    #退会機能、adminが強制退会させるときはユーザーidを含める
+    @user = User.find(params[:user_id])
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
-    reset_session
+    #論理削除は、アソシエーションでは消えないので、消したいものにdestroy_allをやる！
+    @user.posts.destroy_all
+    @user.comments.destroy_all
+    @user.bookmarks.destroy_all
     flash[:notice] = "強制退会させました( ´Д`)y━･~~"
-    redirect_to admin_root_path
+    redirect_to admin_users_path
   end
   
   private

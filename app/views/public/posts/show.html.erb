@@ -1,6 +1,8 @@
 <div class="container px-5 px-sm-0">
     <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
-    <div class="row">
+    <!--フラッシュメッセージの表示-->
+    <h4 class="text-center text-success"><%= flash[:notice] %></h4>
+    <div class="row mb-3">
       <!--ログインユーザーのみ編集、削除ボタンを表示-->
       <% if @post.user == current_user %>
         <div class="col-md-1 mx-auto">
@@ -16,9 +18,6 @@
         <% else %>
       <% end %>
     </div>
-    
-    <!--フラッシュメッセージの表示-->
-    <p class="text-center text-success"><%= flash[:notice] %></p>
     
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -75,7 +74,7 @@
         <!--コメント機能-->
         <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
           <div class="mx-auto">
-            <p class="text-center"><%= f.text_area :comment, size: "60x3", autofocus: true, placeholder: "コメントはここに" %></p>
+            <p class="text-center"><%= f.text_area :comment, size: "60x3", placeholder: "コメントはここに" %></p>
             <p class="text-center ml-3"><%= f.submit "送信", class: 'btn btn-success btn-sm', style: 'width:60px' %></p>
           </div>
         <% end %>
