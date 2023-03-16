@@ -1,11 +1,15 @@
 <div class="container px-5 px-sm-0">
     <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の部屋</h2>
+    
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
+    
     <!--強制退会機能-->
-    <%# if user_signed_in? && current_user.admin? %>
-        <p class="text-center"><%= link_to "退　会", admin_user_unsubscribe_path(@user), class: 'btn btn-danger mt-3', style: 'width:100px' %></p>
-    <%# end %>
+    <% if @user.is_deleted == false %>
+    <p class="text-center"><%= link_to "強制退会", admin_user_unsubscribe_path(@user), class: 'btn btn-danger mt-3', style: 'width:100px' %></p>
+      <%  else %>
+      <h3 class="text-center text-danger">退会済み</h3>
+    <% end %>
     <div class="row border-bottom">
         <div class="col-md-10 mx-auto">
             <table class="table table-borderless">

@@ -25,10 +25,12 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:user_id])
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
-    #論理削除は、アソシエーションでは消えないので、消したいものにdestroy_allをやる！
+    #論理削除は、アソシエーションだけでは消えないので、userに関連した消したいものにdestroy_allをやる！
     @user.posts.destroy_all
     @user.comments.destroy_all
     @user.bookmarks.destroy_all
+    #指定したユーザーidの
+    session[:user_id] = nil
     flash[:notice] = "強制退会させました( ´Д`)y━･~~"
     redirect_to admin_users_path
   end

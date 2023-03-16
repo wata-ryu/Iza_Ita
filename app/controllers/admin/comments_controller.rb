@@ -1,9 +1,9 @@
 class Admin::CommentsController < ApplicationController
-  before_action :admin_user,     only: :destroy
   
   def destroy
+    byebug
     Comment.find(params[:id]).destroy
-    redirect_to admin_post_path(params[:post_id])
+    redirect_to admin_posts_path(params[:post_id])
   end
   
   private

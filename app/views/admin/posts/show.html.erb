@@ -88,6 +88,10 @@
                     <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
                       <span>削　除</span>
                     <% end %>
+                  <% else user_signed_in? && current_user.admin? %>
+                    <%= link_to(admin_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
+                      <span>強制削除</span>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>
