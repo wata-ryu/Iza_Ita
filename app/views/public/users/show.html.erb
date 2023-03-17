@@ -41,9 +41,9 @@
             　<table class="table table-borderless">
                 <tbody>
                   <tr>
-                    <td class="text-center" style="width: 50%"><%= image_tag post.image, size: "200x200" %></td>
+                    <td class="text-center" style="width: 60%"><%= image_tag post.image, size: "200x200" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                    <td style="width: 50%">
+                    <td style="width: 40%">
                         <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
                         # <%= post.genres.name %><br>
                         <br>
