@@ -1,8 +1,13 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    #.order("id DESC") = 最新が一番上に来るように
+    @posts = @user.posts.order("id DESC")
+  end
+  
+  def favorite
     #お気に入り一覧
+    @user = User.find(current_user.id)
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
     @bookmark_list = Post.find(bookmarks)
   end

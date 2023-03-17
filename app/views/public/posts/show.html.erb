@@ -17,10 +17,20 @@
         </div>
         <% else %>
       <% end %>
+      
     </div>
     
     <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-2 mt-5">
+            <!--userごとのプロフィール画像を取得-->
+            <%= link_to public_user_path(@post.user.id) do %>
+            <p class="text-center">
+              <%= image_tag @post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+            </p>
+            <% end %><br>
+            <p class="text-center"><%= @post.user.name %></p>
+        </div>
+        <div class="col-md-4 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
             <!--いいね機能-->
             <% if @post.bookmarked_by?(current_user) %>
