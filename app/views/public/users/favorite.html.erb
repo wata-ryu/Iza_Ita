@@ -18,13 +18,17 @@
                       <% end %><br>
                       <p class="text-center"><%= post.user.name %></p>
                     </td>
-                    <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
+                    <td style="width: 30%"><%= image_tag post.image, size: "160x160" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                    <td style="width: 50%">
-                        <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                        # <%= post.genres.name %><br>
-                        # <%= post.alcohol %>に相性抜群！<br>
-                        # <%= truncate(post.summary, length: 20) %>
+                    <td style="width: 40%">
+                        <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
+                        <% post.genres.each do |genre| %>
+                        #　<%= genre.name %><br>
+                        <% end %>
+                        <br>
+                        #　<%= post.alcohol %>に相性抜群！<br>
+                        <br>
+                        #　<%= truncate(post.summary, length: 20) %>
                     </td>
                     <td></td>
                   </tr>

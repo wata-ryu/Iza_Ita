@@ -48,7 +48,11 @@
                   <td><h3><%= @post.title %></h3></td>
               </tr>
               <tr>
-                  <td>#　<%= @post.genre.name %></td>
+                  <td>
+                    <% @post.genres.each do |genre| %>
+                      #　<%= genre.name %><br>
+                    <% end %>
+                  </td>
               </tr>
               <tr>
                   <td>#　<%= @post.alcohol %>に相性抜群！</td>

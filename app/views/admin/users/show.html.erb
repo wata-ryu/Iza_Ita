@@ -50,31 +50,26 @@
                   　<table class="table table-borderless">
                       <tbody>
                         <tr>
-                          <td style="width: 30%">
-                            <!--userごとのプロフィール画像を取得-->
-                            <%= link_to public_user_path(post.user.id) do %>
-                            <p class="text-center">
-                              <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
-                            </p>
-                            <% end %><br>
-                            <p class="text-center"><%= post.user.name %></p>
-                          </td>
-                          <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
+                          <td class="text-center" style="width: 60%"><%= image_tag post.image, size: "200x200" %></td>
                           <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                          <td style="width: 50%">
-                              <h3> <%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
-                              # <%= post.genres.name %><br>
-                              # <%= post.alcohol %>に相性抜群！<br>
-                              # <%= truncate(post.summary, length: 40) %>
+                          <td style="width: 40%">
+                              <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
+                              <% post.genres.each do |genre| %>
+                              #　<%= genre.name %><br>
+                              <% end %>
+                              <br>
+                              #　<%= post.alcohol %>に相性抜群！<br>
+                              <br>
+                              #　<%= truncate(post.summary, length: 20) %>
                           </td>
                           <td></td>
                         </tr>
                         <tr>
-                          <td></td>
+                          <td><p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p></td>
                           <td>
-                            <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                            <%= post.created_at.to_s(:datetime_jp) %>
                           </td>
-                          <td><%= post.created_at.to_s(:datetime_jp) %></td>
+                          <td></td>
                         </tr>
                       </tbody>
                     </table>

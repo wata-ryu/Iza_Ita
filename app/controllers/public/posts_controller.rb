@@ -53,6 +53,6 @@ class Public::PostsController < ApplicationController
   private
   #ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, :genre_id, genre_ids: [] )
+    params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, genre_ids: [] )
   end
 end

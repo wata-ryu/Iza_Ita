@@ -1,15 +1,16 @@
 <div class="container px-5 px-sm-0">
 <h2 class="text-center mt-3 mb-3">みんなの投稿</h2>
+
 <!--ジャンル検索機能-->
 <%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
     <div>
-      <% @genres.each do |genre| %>
-          <div class="tag-box">
-            <%= link_to genre.name, public_posts_path(name: genre.id) %>
-          </div>
-      <% end %>
+    <% @genres.each do |genre| %>
+        <div class="tag-box">
+          <%= link_to genre.name, public_posts_path(name: genre.id) %>
+        </div>
+    <% end %>
     </div>
-
+    
     <% @posts.each do |post| %>
     <div class="row">
         <div class="col-md-10 mx-auto mt-3">
@@ -29,8 +30,10 @@
                     <td class="text-center" style="width: 40%"><%= image_tag post.image, size: "160x160" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                     <td style="width: 40%">
-                        <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                        # <%= post.genre.name %><br>
+                        <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
+                        <% post.genres.each do |genre| %>
+                        # <%= genre.name %><br>
+                        <% end %>
                         # <%= post.alcohol %>に相性抜群！<br>
                         # <%= truncate(post.summary, length: 40) %>
                     </td>

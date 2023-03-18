@@ -4,7 +4,6 @@ class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     
     belongs_to :user
-    belongs_to :genre
     
     #ジャンル検索機能のアソシエーション
     has_many :post_genres, dependent: :destroy

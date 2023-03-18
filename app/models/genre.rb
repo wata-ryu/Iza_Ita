@@ -1,6 +1,6 @@
 class Genre < ApplicationRecord
   #アソシエーション
-  has_many :posts, dependent: :destroy
+  #has_many :posts, dependent: :destroy
   
   #ジャンル検索機能のアソシエーション
   has_many :post_genres, dependent: :destroy

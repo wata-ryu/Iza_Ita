@@ -34,8 +34,19 @@
                 </tr>
                 <tr>
                   <td>ジャンル</td>
-                  <!--%= f.collection_select :保存先のカラム名, テーブル（モデル）名.all, :実際にDBに保存させるカラム名, :選択肢に用いるカラム名, include_blank: "選択して下さい" %-->
-                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></td>
+                  <td>
+                    <div class="select">
+                      <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+                        <div class='form-check'>
+                          <%= genre.label do %>
+                          <%= genre.check_box %>
+                          <%= genre.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </td>
+                  
                 </tr>
                 <tr>
                   <td>合う酒</td>
