@@ -15,37 +15,35 @@
 
   <body>
     <header class="sticky-top">
-      <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="container">
-          <div class=row>
-            <div class="col-md-3">
-              <a href="/public" class="navbar-brand text-danger">SNACKERS</a>
-              
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-1 mt-1 mb-1 mr-5">
+            <!--サイトロゴ-->
+            <a href="/public"><img class="image_circle"></a>
           </div>
-          <div class=row>
-            <div class="col d-flex">
-              <div class="text-align-center">
+          
+          <div class="col-xl-8">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <ul class="navbar-nav">
                 <!--ログイン後、管理者用ヘッダー-->
                 <% if admin_signed_in? %>
-                  <p class="text-white text-center">Administrator</p>
-                  <li class="nav-item">
-                    <a href= "/admin/posts" class="nav-link text-white btn btn-sm btn-warning ml-5" style="width:120px">投稿一覧</a>
+                  <p class="text-white text-center mt-4">Administrator</p>
+                  <li class="nav-item mt-4">
+                    <a href= "/admin/posts" class="nav-link text-dark btn btn-sm btn-warning ml-3" style="width:120px">投稿一覧</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/admin/users" class="nav-link text-white btn btn-sm btn-warning ml-5 mr-5" style="width:120px">会員一覧</a>
+                  <li class="nav-item mt-4">
+                    <a href="/admin/users" class="nav-link text-dark btn btn-sm btn-warning ml-3 mr-3" style="width:120px">会員一覧</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/admin/genres" class="nav-link text-white btn btn-sm btn-warning mr-5" style="width:120px">ジャンル一覧</a>
+                  <li class="nav-item mt-4">
+                    <a href="/admin/genres" class="nav-link text-dark btn btn-sm btn-warning mr-3" style="width:120px">ジャンル一覧</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item mt-4 mr-5">
                     <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
-                      <p class="nav-link text-white btn btn-sm btn-dark" style="width:120px">ログアウト</p>
+                      <p class="nav-link text-dark btn btn-sm btn-warning" style="width:120px">ログアウト</p>
                     <% end %>
                   </li>
                   <!--キーワード検索機能ー-->
-                  <div class="search_form">
+                  <div class="search_form pr-5">
                     <%= form_with url: search_path, local: true, method: :get do |f| %>
                     <table class="table table-borderless table-inverse">
                       <tbody>
@@ -67,28 +65,28 @@
                   <li class="nav-item">
                     <!--userごとのプロフィール画像を取得-->
                     <%= link_to public_user_path(current_user.id) do %>
-                      <p class="mt-5 text-center">
+                      <p>
                         <%= image_tag current_user.get_profile_image(75,75), class: 'rounded-circle' %>
                         <p class="text-center text-light"><%= current_user.name %></p>
                       </p>
                     <% end %>
-                  </ii>
-                  <li class="nav-item">
-                    <a href="/public/posts" class="nav-link text-white btn btn-sm btn-warning mr-5" style="width:100px">全体投稿</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/public/posts/new" class="nav-link text-white btn btn-sm btn-warning mr-5" style="width:100px">投　稿</a>
+                  <li class="nav-item mt-3">
+                    <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-light ml-5 mr-5" style="width:100px">全体投稿</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item mt-3">
+                    <a href="/public/posts/new" class="nav-link text-dark btn btn-sm btn-light mr-5" style="width:100px">投　稿</a>
+                  </li>
+                  <li class="nav-item mt-3">
                     <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
-                      <p class="btn btn-sm btn-warning text-white nav-link" style="width:100px">ログアウト</p>
+                      <p class="btn btn-sm btn-light text-dark nav-link" style="width:100px">ログアウト</p>
                     <% end %>
                   </li>
-                  <li class="nav-item">
-                    <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-dark nav-link text-white ml-5 mr-5', style: 'width:100px' %>
+                  <li class="nav-item mt-3">
+                    <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-light nav-link text-dark ml-5 mr-5', style: 'width:100px' %>
                   </li>
                   <!--キーワード検索機能ー-->
-                  <div class="search_form">
+                  <div class="search_form ml-5">
                     <%= form_with url: search_path, local: true, method: :get do |f| %>
                     <table class="table table-borderless table-inverse">
                       <tbody>
@@ -106,19 +104,18 @@
                   </div>
                   
                   <% else %>
-                  <li class="nav-item">
-                    <a href="/users/sign_up" class="nav-link text-dark btn btn-warning" style="width:150px">新規登録</a>
+                  <li class="nav-item mt-3 ml-5 mr-5">
+                    <a href="/users/sign_up" class="nav-link text-dark btn btn-light ml-5" style="width:150px">新規登録</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/users/sign_in" class="nav-link text-dark btn btn-warning ml-5" style="width:150px">ログイン</a>
+                  <li class="nav-item mt-3 ml-5">
+                    <a href="/users/sign_in" class="nav-link text-dark btn btn-light ml-5" style="width:150px">ログイン</a>
                   </li>
                 <% end %>
                 </ul>
-              </div>
-            </div>
+            </nav>
           </div>
         </div>
-      </nav>
+      </div>
     </header>
     <%= yield %>
   </body>

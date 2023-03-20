@@ -13,7 +13,18 @@
  *= require_tree .
  *= require_self
  */
- 
+ body {
+   margin: 0;
+   padding: 0;
+}
  .sticky-top {
      background-color: black;
  }
+
+.image_circle {
+ background-image: url("logo.jpg");
+ border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+ width:  80px;       /* ※縦横を同値に */
+ height: 80px;       /* ※縦横を同値に */
+ background-position: center;
+}

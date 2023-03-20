@@ -2,23 +2,6 @@
     <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
     <!--フラッシュメッセージの表示-->
     <h4 class="text-center text-success"><%= flash[:notice] %></h4>
-    <div class="row mb-3">
-      <!--ログインユーザーのみ編集、削除ボタンを表示-->
-      <% if @post.user == current_user %>
-        <div class="col-md-1 mx-auto">
-        <!--編集機能ボタン-->
-          <%= link_to '編　集', edit_public_post_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:80px' %>
-        </div>
-        <!--削除機能ボタン-->
-        <div class="col-md-1 mx-auto">
-        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
-          <span>削　除</span>
-        <% end %>
-        </div>
-        <% else %>
-      <% end %>
-      
-    </div>
     
     <div class="row">
         <div class="col-md-2 mt-5">
@@ -30,7 +13,7 @@
             <% end %><br>
             <p class="text-center"><%= @post.user.name %></p>
         </div>
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-5 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
             <!--いいね機能-->
             <% if @post.bookmarked_by?(current_user) %>
@@ -53,7 +36,7 @@
             <% end %>
         </div>
         
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-5 mx-auto">
         　<table class="table table-borderless">
             <tbody>
               <tr>
@@ -81,6 +64,23 @@
             </tbody>
           </table>
         </div>
+    </div>
+    
+    <div class="row mb-3">
+      <!--ログインユーザーのみ編集、削除ボタンを表示-->
+      <% if @post.user == current_user %>
+        <div class="mx-auto">
+        <!--編集機能ボタン-->
+          <%= link_to '編　集', edit_public_post_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:80px' %>
+        </div>
+        <!--削除機能ボタン-->
+        <div class="mx-auto">
+        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
+          <span>削　除</span>
+        <% end %>
+        </div>
+        <% else %>
+      <% end %>
     </div>
     <div class="mx-auto border-top">
       <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件</h4>

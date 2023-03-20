@@ -1,3 +1,10 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.room-image {
+ height: 350px;
+  background-image: url("room.jpg");
+  background-size: cover;
+  background-position: center center;
+}
