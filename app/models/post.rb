@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+    #アクティブストレージで画像を取得できるようにする
+    has_one_attached :image
+    
     #アソシエーション
     has_many :bookmarks, dependent: :destroy
     has_many :comments, dependent: :destroy
@@ -8,9 +11,6 @@ class Post < ApplicationRecord
     #ジャンル検索機能のアソシエーション
     has_many :post_genres, dependent: :destroy
     has_many :genres, through: :post_genres, dependent: :destroy
-    
-    #アクティブストレージで画像を取得できるようにする
-    has_one_attached :image
     
     #バリデーション設定、trueと記述するとデータが存在しなければならない
     validates :title, presence: true, length: { in: 2..30 }

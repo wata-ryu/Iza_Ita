@@ -25,9 +25,6 @@
                 <%= f.label :is_active_true, "公開　" %>
                 <%= f.radio_button :is_active, :false %>
                 <%= f.label :is_active_false, "非公開" %>
-                <% @something_cool.each do |something| -%>
-                    <%= radio_button_tag "cool", "#{something}", (something == params[:cool]) %><%=h something %>
-                <% end -%>
             </p>
             <p class="text-center mt-5">
                 <%= f.submit "更新する", class: 'btn btn-success', style: 'width:100px' %>

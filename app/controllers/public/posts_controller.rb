@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @genres = Genre.all
-    #ジャンル検索機能および全体一覧
+    #ジャンル検索機能および全体一覧(nameがセットされていたらGenreから関連づけられたbooksを呼び、nameの指定がなければ、全ての投稿を一番上が最新になるよう表示する)
     @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all.order("created_at DESC")
   end
 

@@ -1,85 +1,177 @@
-<div class="container px-5 px-sm-0">
-<h2 class="text-center mt-3">検索結果</h2>
-<!--検索対象モデルがUserの時 -->
-<% if @range == "User" %>
-    <% @users.each do |user| %>
-    <div class="row">
-        <div class="col-md-10 mx-auto">
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <td style="width: 25%">
-                    <%= link_to public_user_path(user.id) do %>
-                      <p class="text-center">
-                        <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
-                      </p>
-                    <% end %>
-                  </td>
-                  <td style="width: 25%px">
-                    <h5>ニックネーム</h5>
-                    <br>
-                    <h5>自己紹介</h5>
-                  </td>
-                  <td style="width: 50%">
-                    <h5><%= user.name %></h5>
-                    <br>
-                    <h5><%= user.introduction %></h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>
-                    <% if user == current_user %>
-                      <%= link_to '編　集', edit_public_user_path(current_user), class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
-                      <% else %>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
-    <% end %>
-<% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
-    <% @posts.each do |post| %>
-    <div class="row">
-        <div class="col-md-9 mx-auto mt-3">
-          <div class="border-top">
-            　<table class="table table-borderless">
+<!--ユーザーが検索-->  
+<% if user_signed_in? %>
+  <div class="container px-5 px-sm-0">
+  <h1 class="text-center mt-3">検索結果　"<%= @word %>"</h1>
+  
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+      <% @users.each do |user| %>
+      
+      <div class="row">
+          <div class="col-md-10 mx-auto">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td style="width: 25%">
-                      <!--userごとのプロフィール画像を取得-->
-                      <%= link_to public_user_path(post.user.id) do %>
-                      <p class="text-center">
-                        <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
-                      </p>
-                      <% end %><br>
-                      <p class="text-center"><%= post.user.name %></p>
+                      <%= link_to public_user_path(user.id) do %>
+                        <p class="text-center">
+                          <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
+                        </p>
+                      <% end %>
                     </td>
-                    <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
-                    <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+                    <td style="width: 25%px">
+                      <h5>ニックネーム</h5>
+                      <br>
+                      <h5>自己紹介</h5>
+                    </td>
                     <td style="width: 50%">
-                        <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                        # <%= post.genre.name %><br>
-                        # <%= post.alcohol %>に相性抜群！<br>
-                        # <%= truncate(post.summary, length: 40) %>
+                      <h5><%= user.name %></h5>
+                      <br>
+                      <h5><%= user.introduction %></h5>
                     </td>
-                    <td></td>
                   </tr>
                   <tr>
                     <td></td>
                     <td>
-                      <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                      <% if user == current_user %>
+                        <%= link_to '編　集', edit_public_user_path(current_user), class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
+                        <% else %>
+                      <% end %>
                     </td>
-                    <td><%= post.created_at.to_s(:datetime_jp) %></td>
                   </tr>
                 </tbody>
               </table>
           </div>
-        </div>
-    </div>
-    <% end %>
-<% end %>
-</div>
+      </div>
+      <% end %>
+  <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+      <% @posts.each do |post| %>
+      <div class="row">
+          <div class="col-md-9 mx-auto mt-3">
+            <div class="border-top">
+              　<table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td style="width: 25%">
+                        <!--userごとのプロフィール画像を取得-->
+                        <%= link_to public_user_path(post.user.id) do %>
+                        <p class="text-center">
+                          <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+                        </p>
+                        <% end %><br>
+                        <p class="text-center"><%= post.user.name %></p>
+                      </td>
+                      <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
+                      <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+                      <td style="width: 50%">
+                          <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
+                          <% post.genres.each do |genre| %>
+                          # <%= genre.name %><br>
+                          <% end %>
+                          # <%= post.alcohol %>に相性抜群！<br>
+                          # <%= truncate(post.summary, length: 40) %>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                      </td>
+                      <td><%= post.created_at.to_s(:datetime_jp) %></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+      <% end %>
+  <% end %>
+  </div>
+
+<!--管理者が検索-->
+<% else %>
+  <div class="container px-5 px-sm-0">
+  <h2 class="text-center mt-3">検索結果</h2>
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+      <% @users.each do |user| %>
+      <div class="row">
+          <div class="col-md-10 mx-auto">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%">
+                      <%= link_to admin_user_path(user.id) do %>
+                        <p class="text-center">
+                          <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
+                        </p>
+                      <% end %>
+                    </td>
+                    <td style="width: 25%px">
+                      <h5>ニックネーム</h5>
+                      <br>
+                      <h5>自己紹介</h5>
+                    </td>
+                    <td style="width: 50%">
+                      <h5><%= user.name %></h5>
+                      <br>
+                      <h5><%= user.introduction %></h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+      <% end %>
+  <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+      <% @posts.each do |post| %>
+      <div class="row">
+          <div class="col-md-9 mx-auto mt-3">
+            <div class="border-top">
+              　<table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td style="width: 25%">
+                        <!--userごとのプロフィール画像を取得-->
+                        <%= link_to admin_user_path(post.user.id) do %>
+                        <p class="text-center">
+                          <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+                        </p>
+                        <% end %><br>
+                        <p class="text-center"><%= post.user.name %></p>
+                      </td>
+                      <td style="width: 25%"><%= image_tag post.image, size: "160x160" %></td>
+                      <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+                      <td style="width: 50%">
+                          <h3> <%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
+                          <% post.genres.each do |genre| %>
+                          # <%= genre.name %><br>
+                          <% end %>
+                          # <%= post.alcohol %>に相性抜群！<br>
+                          # <%= truncate(post.summary, length: 40) %>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                      </td>
+                      <td><%= post.created_at.to_s(:datetime_jp) %></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+      <% end %>
+  <% end %>
+  </div>
+<% end %>  

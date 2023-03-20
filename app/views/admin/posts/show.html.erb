@@ -87,7 +87,7 @@
                   <%= comment.created_at.to_s(:datetime_jp) %>
                 </td>
                 <td style="width: 25%">
-                    <!--コメント削除機能、ログインユーザーのみ表示-->
+                  <!--コメント削除機能、ログインユーザーのみ表示-->
                   <% if comment.user == current_user %>
                     <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
                       <span>削　除</span>

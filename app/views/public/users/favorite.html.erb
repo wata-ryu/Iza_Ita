@@ -1,4 +1,4 @@
-<!--右側お気に入り一覧画面-->
+<!--userごとのお気に入り一覧-->
 <div class="container px-5 px-lg-0">
     <div class="row border-top">
     　<div class="col-md-10 mx-auto">
@@ -18,7 +18,7 @@
                       <% end %><br>
                       <p class="text-center"><%= post.user.name %></p>
                     </td>
-                    <td style="width: 30%"><%= image_tag post.image, size: "160x160" %></td>
+                    <td class="text-center" style="width: 30%"><%= image_tag post.image, size: "160x160" %></td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                     <td style="width: 40%">
                         <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
@@ -34,9 +34,7 @@
                   </tr>
                   <tr>
                     <td></td>
-                    <td>
-                      <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
-                    </td>
+                    <td class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></td>
                     <td><%= post.created_at.to_s(:datetime_jp) %></td>
                   </tr>
                 </tbody>

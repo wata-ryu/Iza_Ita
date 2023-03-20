@@ -17,7 +17,7 @@
     <header class="sticky-top">
       <div class="container">
         <div class="row">
-          <div class="col-xl-1 mt-1 mb-1 mr-5">
+          <div class="col-xl-1 pt-2 pb-4 pr-5">
             <!--サイトロゴ-->
             <a href="/public"><img class="image_circle"></a>
           </div>
@@ -27,15 +27,12 @@
                 <ul class="navbar-nav">
                 <!--ログイン後、管理者用ヘッダー-->
                 <% if admin_signed_in? %>
-                  <p class="text-white text-center mt-4">Administrator</p>
+                  <h2 class="text-white text-center pt-4 pr-5">Administrator</h2>
                   <li class="nav-item mt-4">
                     <a href= "/admin/posts" class="nav-link text-dark btn btn-sm btn-warning ml-3" style="width:120px">投稿一覧</a>
                   </li>
                   <li class="nav-item mt-4">
                     <a href="/admin/users" class="nav-link text-dark btn btn-sm btn-warning ml-3 mr-3" style="width:120px">会員一覧</a>
-                  </li>
-                  <li class="nav-item mt-4">
-                    <a href="/admin/genres" class="nav-link text-dark btn btn-sm btn-warning mr-3" style="width:120px">ジャンル一覧</a>
                   </li>
                   <li class="nav-item mt-4 mr-5">
                     <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
@@ -62,15 +59,7 @@
                   
                   <!--ログイン後、ユーザー共通ヘッダー-->
                   <% elsif user_signed_in? %>
-                  <li class="nav-item">
-                    <!--userごとのプロフィール画像を取得-->
-                    <%= link_to public_user_path(current_user.id) do %>
-                      <p>
-                        <%= image_tag current_user.get_profile_image(75,75), class: 'rounded-circle' %>
-                        <p class="text-center text-light"><%= current_user.name %></p>
-                      </p>
-                    <% end %>
-                  </li>
+                  
                   <li class="nav-item mt-3">
                     <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-light ml-5 mr-5" style="width:100px">全体投稿</a>
                   </li>
@@ -84,6 +73,15 @@
                   </li>
                   <li class="nav-item mt-3">
                     <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-light nav-link text-dark ml-5 mr-5', style: 'width:100px' %>
+                  </li>
+                  <li class="nav-item">
+                    <!--userごとのプロフィール画像を取得-->
+                    <%= link_to public_user_path(current_user.id) do %>
+                      <p>
+                        <%= image_tag current_user.get_profile_image(75,75), class: 'rounded-circle' %>
+                        <p class="text-center text-light"><%= current_user.name %></p>
+                      </p>
+                    <% end %>
                   </li>
                   <!--キーワード検索機能ー-->
                   <div class="search_form ml-5">
@@ -101,14 +99,15 @@
                       </tbody>
                     </table>
                     <% end %>
+                  
                   </div>
                   
                   <% else %>
-                  <li class="nav-item mt-3 ml-5 mr-5">
-                    <a href="/users/sign_up" class="nav-link text-dark btn btn-light ml-5" style="width:150px">新規登録</a>
+                  <li class="nav-item pt-4 ml-3">
+                    <a href="/users/sign_up" class="nav-link text-dark btn btn-light" style="width:150px">新規登録</a>
                   </li>
-                  <li class="nav-item mt-3 ml-5">
-                    <a href="/users/sign_in" class="nav-link text-dark btn btn-light ml-5" style="width:150px">ログイン</a>
+                  <li class="nav-item pt-4 ml-3">
+                    <a href="/users/sign_in" class="nav-link text-dark btn btn-light" style="width:150px">ログイン</a>
                   </li>
                 <% end %>
                 </ul>

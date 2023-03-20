@@ -9,7 +9,8 @@
         <% end %>
       </ul>
     <% end %>
-      <!--投稿機能このURLはcreateへ飛ばすURL -->
+      <!--新規投稿機能 -->
+      <!--投稿機能このURLはcreateへ飛ばすURL-->
       <%= form_with model: @post, url: public_posts_path do |f| %>
       <div class="row">
         <div class="col-md-3 mx-auto">
@@ -46,7 +47,6 @@
                       <% end %>
                     </div>
                   </td>
-                  
                 </tr>
                 <tr>
                   <td>合う酒</td>
