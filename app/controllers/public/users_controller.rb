@@ -39,6 +39,7 @@ class Public::UsersController < ApplicationController
     @user.posts.destroy_all
     @user.comments.destroy_all
     @user.bookmarks.destroy_all
+    reset_session
     flash[:notice] = "退会しました_:(´ཀ`」 ∠):"
     redirect_to public_root_path
   end

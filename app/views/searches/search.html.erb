@@ -1,14 +1,14 @@
 <!--ユーザーが検索-->  
 <% if user_signed_in? %>
   <div class="container px-5 px-sm-0">
-  <h1 class="text-center mt-3">検索結果　"<%= @word %>"</h1>
+  
   
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
+  <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
       <% @users.each do |user| %>
-      
       <div class="row">
-          <div class="col-md-10 mx-auto">
+          <div class="col-md-10 mx-auto border-top">
               <table class="table table-borderless">
                 <tbody>
                   <tr>
@@ -46,9 +46,10 @@
       <% end %>
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+      <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
       <% @posts.each do |post| %>
       <div class="row">
-          <div class="col-md-9 mx-auto mt-3">
+          <div class="col-md-9 mx-auto mt-3 border-top">
             <div class="border-top">
               　<table class="table table-borderless">
                   <tbody>
@@ -77,7 +78,7 @@
                     <tr>
                       <td></td>
                       <td>
-                        <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                        <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
                       </td>
                       <td><%= post.created_at.to_s(:datetime_jp) %></td>
                     </tr>
@@ -93,12 +94,12 @@
 <!--管理者が検索-->
 <% else %>
   <div class="container px-5 px-sm-0">
-  <h2 class="text-center mt-3">検索結果</h2>
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
+  <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
       <% @users.each do |user| %>
       <div class="row">
-          <div class="col-md-10 mx-auto">
+          <div class="col-md-10 mx-auto border-top">
               <table class="table table-borderless">
                 <tbody>
                   <tr>
@@ -131,9 +132,10 @@
       <% end %>
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+      <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
       <% @posts.each do |post| %>
       <div class="row">
-          <div class="col-md-9 mx-auto mt-3">
+          <div class="col-md-9 mx-auto mt-3 border-top">
             <div class="border-top">
               　<table class="table table-borderless">
                   <tbody>
@@ -162,7 +164,7 @@
                     <tr>
                       <td></td>
                       <td>
-                        <p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                        <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
                       </td>
                       <td><%= post.created_at.to_s(:datetime_jp) %></td>
                     </tr>

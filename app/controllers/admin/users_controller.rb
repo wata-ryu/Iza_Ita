@@ -31,7 +31,6 @@ class Admin::UsersController < ApplicationController
     @user.bookmarks.destroy_all
     #指定したユーザーidの
     session[:user_id] = nil
-    flash[:notice] = "強制退会させました( ´Д`)y━･~~"
     redirect_to admin_users_path
   end
   
