@@ -40,8 +40,17 @@
                   <td></td>
               </tr>
               <tr>
-                  <td>ジャンル</td>
-                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></td>
+                  <td>ジャンル<br>(複数可)</td>
+                  <td>
+                      <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+                        <div class='form-check'>
+                          <%= genre.label do %>
+                          <%= genre.check_box %>
+                          <%= genre.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                　</td>
               </tr>
               <tr>
                   <td>合う酒</td>

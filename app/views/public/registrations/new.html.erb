@@ -8,7 +8,7 @@
             <table class="table table-borderless table-inverse">
               <tbody>
                 <tr>
-                  <td>ニックネーム</td>
+                  <td>ニックネーム（２〜１０文字）</td>
                   <td><%= f.text_field :name, autofocus: true, class: 'form-control' %></td>
                 </tr>
                 <tr>
@@ -19,7 +19,7 @@
                   <td>
                     パスワード
                     <% if @minimum_password_length %>
-                    (半角英数<%= @minimum_password_length %> 文字以上)
+                    (<%= @minimum_password_length %> 文字以上)
                     <% end %>
                   </td>
                   <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></td>

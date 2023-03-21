@@ -34,7 +34,7 @@
                   <td><%= f.text_field :title, autofocus: true, class: 'form-control', placeholder:"コンビニで創作激うま唐揚げ" %></td>
                 </tr>
                 <tr>
-                  <td>ジャンル</td>
+                  <td>ジャンル<br>(複数可)</td>
                   <td>
                     <div class="select">
                       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>

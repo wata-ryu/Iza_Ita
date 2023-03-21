@@ -12,8 +12,9 @@ class Post < ApplicationRecord
     has_many :post_genres, dependent: :destroy
     has_many :genres, through: :post_genres, dependent: :destroy
     
-    #バリデーション設定、trueと記述するとデータが存在しなければならない
-    validates :title, presence: true, length: { in: 2..30 }
+    #バリデーション設定、presence: trueと記述するとデータが存在しなければならない
+    validates :title, presence: true, length: { in: 2..20 }
+    validates :genre_ids, presence: true
     validates :alcohol, presence: true, length: { in: 2..20 }
     validates :summary, presence: true, length: { in: 2..100 }
     validates :ingredient, presence: true, length: { in: 2..100 }

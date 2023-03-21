@@ -45,14 +45,16 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    #投稿削除後、マイページへ
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_posts_path
+    redirect_to public_user_path(current_user)
   end
   
   private
   #ストロングパラメータ
   def post_params
+    #idsは配列のため、genre_ids: []のような記述になる
     params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, genre_ids: [] )
   end
 end

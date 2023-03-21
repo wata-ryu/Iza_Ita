@@ -8,7 +8,7 @@
             <!--userごとのプロフィール画像を取得-->
             <%= link_to public_user_path(@post.user.id) do %>
             <p class="text-center">
-              <%= image_tag @post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+              <%= image_tag @post.user.get_profile_image(150,150), class: 'rounded-circle' %>
             </p>
             <% end %><br>
             <p class="text-center"><%= @post.user.name %></p>
@@ -71,19 +71,28 @@
       <% if @post.user == current_user %>
         <div class="mx-auto">
         <!--編集機能ボタン-->
-          <%= link_to '編　集', edit_public_post_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:80px' %>
+          <%= link_to '投稿編集', edit_public_post_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
         </div>
         <!--削除機能ボタン-->
         <div class="mx-auto">
-        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:80px', "data-confirm" => "本当に削除しますか？") do %>
-          <span>削　除</span>
+        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
+          <span>投稿削除</span>
         <% end %>
         </div>
         <% else %>
       <% end %>
     </div>
     <div class="mx-auto border-top">
-      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件</h4>
+      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~50字）</h4>
+      <!--バリデーションによるエラー表示 -->
+      <% if @comment.errors.any? %>
+        <p class="text-danger"><%= @comment.errors.count %>件のエラーが発生しました！</p>
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li class="text-danger"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <div>
         <!--コメント機能-->
         <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
