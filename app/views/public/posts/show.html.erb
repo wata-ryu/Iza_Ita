@@ -83,7 +83,7 @@
       <% end %>
     </div>
     <div class="mx-auto border-top">
-      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~50字）</h4>
+      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
       <!--バリデーションによるエラー表示 -->
       <% if @comment.errors.any? %>
         <p class="text-danger"><%= @comment.errors.count %>件のエラーが発生しました！</p>
@@ -102,7 +102,7 @@
           </div>
         <% end %>
       </div>
-      <% @post.comments.each do |comment| %>
+      <% @comments.each do |comment| %>
       <div class="col-md-8 mx-auto border-top">
         　<table class="table table-borderless">
             <tbody>
@@ -119,8 +119,8 @@
                 <td style="width: 25%">
                   <!--コメント削除機能、ログインユーザーのみ表示-->
                   <% if comment.user == current_user %>
-                    <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:70px', "data-confirm" => "本当に削除しますか？") do %>
-                      <span>削除</span>
+                    <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:120px', "data-confirm" => "本当に削除しますか？") do %>
+                      <span>コメント削除</span>
                     <% end %>
                   <% end %>
                 </td>

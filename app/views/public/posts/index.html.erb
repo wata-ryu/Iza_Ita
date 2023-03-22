@@ -1,14 +1,19 @@
 <div class="container px-5 px-sm-0">
-<h2 class="text-center mt-3 mb-3">みんなの投稿</h2>
+<!--それぞれに対応したトップ表示-->
+<% if @genre %>
+  <h2 class="text-center mt-3 mb-3"><%= @genre.name %>関連の投稿</h2>
+<% else %>
+  <h2 class="text-center mt-3 mb-3">みんなの投稿一覧</h2>
+<% end %>
 
 <!--ジャンル検索機能-->
 <%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
-    <div>
-    <% @genres.each do |genre| %>
-      <div class="tag-box d-flex">
-        <%= link_to genre.name, public_posts_path(name: genre.id) %>
-      </div>
-    <% end %>
+   <div class="row mt-5 mb-5">
+      <% @genres.each do |genre| %>
+        <div class="tag-box mx-auto">
+          <%= link_to genre.name, public_posts_path(name: genre.id) %>
+        </div>
+      <% end %>
     </div>
     
     <!--投稿一覧-->
@@ -28,7 +33,13 @@
                       <% end %><br>
                       <p class="text-center"><%= post.user.name %></p>
                     </td>
-                    <td class="text-center" style="width: 40%"><%= image_tag post.image, size: "160x160" %></td>
+                    <td style="width: 40%">
+                      <%= link_to public_post_path(post) do %>
+                      <p class="text-center">
+                        <%= image_tag post.image, size: "160x160" %>
+                      </p>
+                      <% end %>
+                    </td>
                     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                     <td style="width: 40%">
                         <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>

@@ -3,9 +3,8 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .top-image {
   /* 画像ファイルの指定 */
-  height: 800px;
+  height: 650px;
   background-image: url("top2.png");
   background-size: cover;
-  background-position: center center;
-  
+  background-position: 80% 35%;
 }

@@ -50,7 +50,13 @@
                   　<table class="table table-borderless">
                       <tbody>
                         <tr>
-                          <td class="text-center" style="width: 60%"><%= image_tag post.image, size: "200x200" %></td>
+                          <td style="width: 60%">
+                            <%= link_to admin_post_path(post) do %>
+                            <p class="text-center">
+                              <%= image_tag post.image, size: "200x200" %>
+                            </p>
+                            <% end %>
+                          </td>
                           <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
                           <td style="width: 40%">
                               <h3><%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
@@ -65,7 +71,7 @@
                           <td></td>
                         </tr>
                         <tr>
-                          <td><p class="text-center">♥ <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p></td>
+                          <td><p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p></td>
                           <td>
                             <%= post.created_at.to_s(:datetime_jp) %>
                           </td>

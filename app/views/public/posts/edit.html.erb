@@ -13,7 +13,7 @@
     <!--フラッシュメッセージの表示-->
     <p class="text-center text-success"><%= flash[:notice] %></p>
     
-    <%= form_with model: @post, method: :patch, url: public_post_path(current_user.id) do |f| %>
+    <%= form_with model: @post, method: :patch, url: public_post_path(@post) do |f| %>
     <div class="row">
         <div class="col-md-3 mx-auto">
             <div>
@@ -21,10 +21,11 @@
                 <%= f.file_field :image, accept: "image/*" %>
             </div>
             <p class="text-center mt-5">
-                <%= f.radio_button :is_active, :true %>
-                <%= f.label :is_active_true, "公開　" %>
-                <%= f.radio_button :is_active, :false %>
-                <%= f.label :is_active_false, "非公開" %>
+                <%= f.radio_button :release, 'true' %>
+                <%= f.label :release, '公開　', value: true %>
+                
+                <%= f.radio_button :release, 'false' %>
+                <%= f.label :release, '非公開', value: false %>
             </p>
             <p class="text-center mt-5">
                 <%= f.submit "更新する", class: 'btn btn-success', style: 'width:100px' %>

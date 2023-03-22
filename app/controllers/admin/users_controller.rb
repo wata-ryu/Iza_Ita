@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    #.order("id DESC") = 最新が一番上に来るように
+    @posts = @user.posts.order("id DESC")
   end
 
   def edit
