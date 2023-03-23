@@ -24,8 +24,27 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  # 検索方法分岐
+  # 検索方法分岐、会員は退会していない会員のみ表示
   def self.looks(search, word)
+    #完全一致
+    if search == "perfect_match"
+      @user = User.where(is_deleted: false).where("name LIKE?", "#{word}")
+    #前方一致
+    elsif search == "forward_match"
+      @user = User.where(is_deleted: false).where("name LIKE?","#{word}%")
+    #後方一致
+    elsif search == "backward_match"
+      @user = User.where(is_deleted: false).where("name LIKE?","%#{word}")
+    #部分一致
+    elsif search == "partial_match"
+      @user = User.where(is_deleted: false).where("name LIKE?","%#{word}%")
+    else
+      @user = User.where(is_deleted: false)
+    end
+  end
+  
+  # 検索方法分岐、adminは退会している人を含む会員を表示
+  def self.looks_for_admin(search, word)
     #完全一致
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")

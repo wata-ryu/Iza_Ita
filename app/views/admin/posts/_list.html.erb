@@ -1,0 +1,49 @@
+<% posts.each do |post| %>
+<div class="row">
+    <div class="col-md-9 mx-auto mt-3">
+      <div class="border-top">
+        　<table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td style="width: 20%">
+                  <!--userごとのプロフィール画像を取得-->
+                  <%= link_to admin_user_path(post.user.id) do %>
+                  <p class="text-center">
+                    <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
+                  </p>
+                  <% end %><br>
+                  <p class="text-center"><%= post.user.name %></p>
+                </td>
+                <td style="width: 40%">
+                  <%= link_to admin_post_path(post) do %>
+                  <p class="text-center">
+                    <%= image_tag post.image, size: "160x160" %>
+                  </p>
+                  <% end %>
+                </td>
+                <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+                <td style="width: 40%">
+                    <h3><%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
+                    <% post.genres.each do |genre| %>
+                    # <%= genre.name %><br>
+                    <% end %>
+                    # <%= post.alcohol %>に相性抜群！<br>
+                    # <%= truncate(post.summary, length: 40) %>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+                </td>
+                <td><%= post.created_at.to_s(:datetime_jp) %></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>
+<% end %>
+<!--ページネーション -->
+<h5 class="pb-5"><%= paginate @posts %></h5>

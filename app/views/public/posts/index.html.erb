@@ -1,22 +1,24 @@
-<div class="container px-5 px-sm-0">
-<!--それぞれに対応したトップ表示-->
-<% if @genre %>
-  <h2 class="text-center mt-3 mb-3"><%= @genre.name %>関連の投稿</h2>
-<% else %>
-  <h2 class="text-center mt-3 mb-3">みんなの投稿一覧</h2>
-<% end %>
-
-<!--ジャンル検索機能-->
-<%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
-  　<div class="row mt-5 mb-5">
-      <% @genres.each do |genre| %>
-        <div class="tag-box mx-auto">
-          <h5><%= link_to genre.name, public_posts_path(name: genre.id) %></h5>
-        </div>
-      <% end %>
-  　</div>
-    
-    <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
-    <%= render 'list', posts: @posts %>
-<% end %>
+<div class="index-image">
+  <div class="container px-5 px-sm-0">
+  <!--それぞれに対応したトップ表示-->
+  <% if @genre %>
+    <h2 class="text-center pt-3 mb-3"><%= @genre.name %>関連の投稿</h2>
+  <% else %>
+    <h2 class="text-center pt-3 mb-3">みんなの投稿一覧</h2>
+  <% end %>
+  
+  <!--ジャンル検索機能-->
+  <%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
+    　<div class="row mt-5 mb-5">
+        <% @genres.each do |genre| %>
+          <div class="tag-box mx-auto">
+            <h5><%= link_to genre.name, public_posts_path(name: genre.id) %></h5>
+          </div>
+        <% end %>
+    　</div>
+      
+      <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
+      <%= render 'list', posts: @posts %>
+  <% end %>
+  </div>
 </div>

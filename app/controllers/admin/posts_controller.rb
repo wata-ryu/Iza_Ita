@@ -3,10 +3,10 @@ class Admin::PostsController < ApplicationController
     @genres = Genre.all
     if params[:name].present?
       @genre = Genre.find(params[:name])
-      @posts = @genre.posts
+      @posts = @genre.posts.page(params[:page])
     else
       #全体投稿一覧（最新を上に表示）
-      @posts = Post.all.order("created_at DESC")
+      @posts = Post.all.order("created_at DESC").page(params[:page])
     end
   end
 
