@@ -8,13 +8,13 @@
 
 <!--ジャンル検索機能-->
 <%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
-   <div class="row mt-5 mb-5">
+  　<div class="row mt-5 mb-5">
       <% @genres.each do |genre| %>
         <div class="tag-box mx-auto">
-          <%= link_to genre.name, public_posts_path(name: genre.id) %>
+          <h5><%= link_to genre.name, public_posts_path(name: genre.id) %></h5>
         </div>
       <% end %>
-    </div>
+  　</div>
     
     <!--投稿一覧-->
     <% @posts.each do |post| %>
@@ -65,4 +65,5 @@
     </div>
     <% end %>
 <% end %>
+<h5 class="pb-5"><%= paginate @posts %></h5>
 </div>

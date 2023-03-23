@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  #ユーザーはログインしないと弾かれる、ただしtopは除く
+  before_action :authenticate_user!, except: [:top]
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   #サインイン後の場所指定

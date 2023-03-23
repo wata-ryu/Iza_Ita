@@ -1,8 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    #.order("id DESC") = 最新が一番上に来るように
-    @posts = @user.posts.order("id DESC")
+    #.order("id DESC") = 最新が一番上に来るように + kaminariページネーション
+    @posts = @user.posts.order("id DESC").page(params[:page])
   end
   
   def favorite

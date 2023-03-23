@@ -22,10 +22,10 @@ class Public::PostsController < ApplicationController
     #ジャンル検索機能を使用する場合
     if params[:name].present?
       @genre = Genre.find(params[:name])
-      @posts = @genre.posts
+      @posts = @genre.posts.page(params[:page])
     else
-      #全体投稿一覧（最新を上に表示）
-      @posts = Post.all.order("created_at DESC")
+      #全体投稿一覧（最新を上に表示 + kaminariでのページネーション）
+      @posts = Post.all.order("created_at DESC").page(params[:page])
     end
   end
 

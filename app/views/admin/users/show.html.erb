@@ -7,7 +7,7 @@
     <!--強制退会機能-->
     <% if @user.is_deleted == false %>
     <p class="text-center"><%= link_to "強制退会", admin_user_unsubscribe_path(@user), class: 'btn btn-danger mt-3', style: 'width:100px' %></p>
-      <%  else %>
+      <% else %>
       <h3 class="text-center text-danger">退会済み</h3>
     <% end %>
     <div class="row border-bottom">
@@ -83,6 +83,10 @@
               </div>
           </div>
           <% end %>
+      </div>
+      <!--kaminariでのページネーション-->
+      <div class="text-center">
+        <h5 class="mt-5"><%= paginate @posts %></h5>
       </div>
     </div>
 </div>
