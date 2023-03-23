@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  #get "bookmarks" => "searches#search"
-  
   get "search" => "searches#search"
   
   namespace :admin do
@@ -10,7 +8,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users, only: [:index, :show] do
-      #admin側からの削除機能、user側からと違いユーザーの指定が必要なのでここにネストする
+      #admin側からの論理削除機能、user側からと違いユーザーの指定が必要なのでここにネストする
       get :unsubscribe
       patch :withdraw
     end

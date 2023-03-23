@@ -10,6 +10,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(current_user.id)
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
     @bookmark_list = Post.find(bookmarks)
+    @posts = @bookmark_list
   end
 
   def edit

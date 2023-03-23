@@ -1,0 +1,35 @@
+<% @users.each do |user| %>
+<div class="row">
+  <div class="col-md-10 mx-auto border-top">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td style="width: 30%">
+              <%= link_to public_user_path(user.id) do %>
+                <p class="text-center">
+                  <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
+                </p>
+              <% end %>
+            </td>
+            <td style="width: 25%px">
+              <h5>ニックネーム</h5>
+              <br>
+              <h5>自己紹介</h5>
+            </td>
+            <td style="width: 50%">
+              <h5><%= user.name %></h5>
+              <br>
+              <h5><%= user.introduction %></h5>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<% end %>
+<!--ページネーション -->
+<h4 class="pb-4"><%= paginate @users %></h4>

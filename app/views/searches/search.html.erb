@@ -5,87 +5,15 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
   <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
-      <% @users.each do |user| %>
-      <div class="row">
-          <div class="col-md-10 mx-auto border-top">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td style="width: 30%">
-                      <%= link_to public_user_path(user.id) do %>
-                        <p class="text-center">
-                          <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
-                        </p>
-                      <% end %>
-                    </td>
-                    <td style="width: 25%px">
-                      <h5>ニックネーム</h5>
-                      <br>
-                      <h5>自己紹介</h5>
-                    </td>
-                    <td style="width: 50%">
-                      <h5><%= user.name %></h5>
-                      <br>
-                      <h5><%= user.introduction %></h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-      </div>
-      <% end %>
-      <!--ページネーション -->
-      <h4 class="text-center"><%= paginate @users %></h4>
+  
+      <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
+      <%= render 'user', users: @users %>
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
       <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
-      <% @posts.each do |post| %>
-      <div class="row">
-          <div class="col-md-9 mx-auto mt-3 border-top">
-            <div class="border-top">
-              　<table class="table table-borderless">
-                  <tbody>
-                    <tr>
-                      <td style="width: 20%">
-                        <!--userごとのプロフィール画像を取得-->
-                        <%= link_to public_user_path(post.user.id) do %>
-                        <p class="text-center">
-                          <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
-                        </p>
-                        <% end %><br>
-                        <p class="text-center"><%= post.user.name %></p>
-                      </td>
-                      <td class="text-center" style="width: 40%"><%= image_tag post.image, size: "160x160" %></td>
-                      <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                      <td style="width: 40%">
-                          <h3> <%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                          <% post.genres.each do |genre| %>
-                          # <%= genre.name %><br>
-                          <% end %>
-                          # <%= post.alcohol %>に相性抜群！<br>
-                          # <%= truncate(post.summary, length: 40) %>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td>
-                        <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
-                      </td>
-                      <td><%= post.created_at.to_s(:datetime_jp) %></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-      </div>
-      <% end %>
-      <!--ページネーション -->
-      <h4 class="text-center"><%= paginate @posts %></h4>
+      
+      <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
+      <%= render 'public/posts/list', posts: @posts %>
   <% end %>
   </div>
 
@@ -95,87 +23,15 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
   <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
-      <% @users.each do |user| %>
-      <div class="row">
-          <div class="col-md-10 mx-auto border-top">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td style="width: 30%">
-                      <%= link_to admin_user_path(user.id) do %>
-                        <p class="text-center">
-                          <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
-                        </p>
-                      <% end %>
-                    </td>
-                    <td style="width: 25%px">
-                      <h5>ニックネーム</h5>
-                      <br>
-                      <h5>自己紹介</h5>
-                    </td>
-                    <td style="width: 50%">
-                      <h5><%= user.name %></h5>
-                      <br>
-                      <h5><%= user.introduction %></h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-      </div>
-      <% end %>
-      <!--ページネーション -->
-      <h4 class="text-center"><%= paginate @users %></h4>
+  
+      <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
+      <%= render 'user', users: @users %>
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
       <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
-      <% @posts.each do |post| %>
-      <div class="row">
-          <div class="col-md-9 mx-auto mt-3 border-top">
-            <div class="border-top">
-              　<table class="table table-borderless">
-                  <tbody>
-                    <tr>
-                      <td style="width: 20%">
-                        <!--userごとのプロフィール画像を取得-->
-                        <%= link_to admin_user_path(post.user.id) do %>
-                        <p class="text-center">
-                          <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle' %>
-                        </p>
-                        <% end %><br>
-                        <p class="text-center"><%= post.user.name %></p>
-                      </td>
-                      <td class="text-center" style="width: 40%"><%= image_tag post.image, size: "160x160" %></td>
-                      <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                      <td style="width: 40%">
-                          <h3> <%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
-                          <% post.genres.each do |genre| %>
-                          # <%= genre.name %><br>
-                          <% end %>
-                          # <%= post.alcohol %>に相性抜群！<br>
-                          # <%= truncate(post.summary, length: 40) %>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td>
-                        <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
-                      </td>
-                      <td><%= post.created_at.to_s(:datetime_jp) %></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-      </div>
-      <% end %>
-      <!--ページネーション -->
-      <h4 class="text-center"><%= paginate @posts %></h4>
+      
+      <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
+      <%= render 'posts/list', posts: @posts %>
   <% end %>
   </div>
 <% end %>  
