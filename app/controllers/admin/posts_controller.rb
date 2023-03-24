@@ -1,4 +1,6 @@
 class Admin::PostsController < ApplicationController
+  before_action :confirm_admin
+  
   def index
     @genres = Genre.all
     if params[:name].present?
@@ -29,5 +31,13 @@ class Admin::PostsController < ApplicationController
   def post_params
     #idsは配列のため、genre_ids: []のような記述になる
     params.require(:post).permit(:title, :alcohol, :summary, :ingredient, :cook, :image, :release, genre_ids: [] )
+  end
+  
+  def confirm_admin
+    #adminでログインしているか？
+    #if
+    #else
+      #render public_root_path
+    #end
   end
 end

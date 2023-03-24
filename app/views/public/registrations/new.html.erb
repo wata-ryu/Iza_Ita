@@ -1,38 +1,40 @@
-<div class="container px-5 px-sm-0">
-    <div class="d-flex row">
-        <div class="col-6 mt-5 mx-auto">
-          <h2 class="mb-5 text-center">新規会員登録</h2>
-
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= render "public/shared/error_messages", resource: resource %>
-            <table class="table table-borderless table-inverse">
-              <tbody>
-                <tr>
-                  <td>ニックネーム（２〜１０文字）</td>
-                  <td><%= f.text_field :name, autofocus: true, class: 'form-control' %></td>
-                </tr>
-                <tr>
-                  <td>メールアドレス</td>
-                  <td><%= f.email_field :email, autocomplete: "email", class: 'form-control' %></td>
-                </tr>
-                <tr>
-                  <td>
-                    パスワード
-                    <% if @minimum_password_length %>
-                    (<%= @minimum_password_length %> 文字以上)
-                    <% end %>
-                  </td>
-                  <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></td>
-                </tr>
-                <tr>
-                  <td>パスワード（確認用）</td>
-                  <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %></td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="text-center"><%= f.submit "　新規登録　", class: 'btn btn-success btn' %></p>
-          <% end %>
-          <p class="text-center">既にご登録済みの方は<%= render "public/shared/links" %>からログインしてください。</p>
-        </div>
-    </div>
+<div class="main-image">
+  <div class="container px-5 px-sm-0">
+      <div class="d-flex row">
+          <div class="col-6 mt-5 mx-auto">
+            <h1 class="mb-5 text-center text-light">新規会員登録</h1>
+  
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "public/shared/error_messages", resource: resource %>
+              <table class="table table-borderless table-inverse">
+                <tbody>
+                  <tr>
+                    <td><h5 class="text-light">ニックネーム</h5><p class="text-light">(２〜１０文字)</p></td>
+                    <td><%= f.text_field :name, autofocus: true, class: 'form-control' %></td>
+                  </tr>
+                  <tr>
+                    <td><h5 class="text-light">メールアドレス</h5></td>
+                    <td><%= f.email_field :email, autocomplete: "email", class: 'form-control' %></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5 class="text-light">パスワード</h5>
+                      <% if @minimum_password_length %>
+                      <p class="text-light">(<%= @minimum_password_length %> 文字以上)</p>
+                      <% end %>
+                    </td>
+                    <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></td>
+                  </tr>
+                  <tr>
+                    <td><h5 class="text-light">パスワード</h5><p class="text-light">（確認用）</p></td>
+                    <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-center"><%= f.submit "　新規登録　", class: 'btn btn-success btn' %></p>
+            <% end %>
+            <h5 class="text-center text-light">既にご登録済みの方は<%= render "public/shared/links" %>からログインしてください。</h5>
+          </div>
+      </div>
+  </div>
 </div>

@@ -1,8 +1,6 @@
 class Public::BookmarksController < ApplicationController
+  
   def index
-    @genres = Genre.all
-    #ジャンル検索機能および全体一覧
-    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all.order("created_at DESC")
   end
 
   def create

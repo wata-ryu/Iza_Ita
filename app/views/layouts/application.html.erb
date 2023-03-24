@@ -61,10 +61,10 @@
                   <% elsif user_signed_in? %>
                   
                   <li class="nav-item mt-3">
-                    <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-warning ml-5 mr-5" style="width:100px">全体投稿</a>
+                    <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-warning ml-5 mr-5" style="width:100px">投稿を見る</a>
                   </li>
                   <li class="nav-item mt-3">
-                    <a href="/public/posts/new" class="nav-link text-dark btn btn-sm btn-warning mr-5" style="width:100px">投　稿</a>
+                    <a href="/public/posts/new" class="nav-link text-dark btn btn-sm btn-warning mr-5" style="width:100px">レシピ投稿</a>
                   </li>
                   <li class="nav-item mt-3">
                     <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>

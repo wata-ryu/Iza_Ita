@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   #Bootstrap の flash messageを使えるようにキーを許可する
   add_flash_types :success, :info, :warning, :danger
   
