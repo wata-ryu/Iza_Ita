@@ -12,7 +12,6 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "投稿が成功しました！"
       redirect_to public_post_path(@post)
     else
       render :new
@@ -46,8 +45,6 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
      if @post.update(post_params)
-      #更新成功のflash message
-      flash[:notice] = "更新が成功しました！"
       redirect_to public_post_path(@post)
      else
         render:edit

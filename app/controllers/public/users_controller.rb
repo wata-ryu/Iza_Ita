@@ -11,8 +11,8 @@ class Public::UsersController < ApplicationController
     #お気に入り一覧
     @user = User.find(current_user.id)
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
-    #ページネーションは取得するのが単数では動かない！！
-    @bookmark_list = Post.where(id: bookmarks).page(params[:page])
+    #ページネーション、並べ替えは取得するのが単数では動かない！！
+    @bookmark_list = Post.where(id: bookmarks).order("id DESC").page(params[:page])
     @posts = @bookmark_list
   end
 

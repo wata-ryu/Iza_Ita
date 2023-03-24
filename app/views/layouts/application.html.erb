@@ -61,18 +61,18 @@
                   <% elsif user_signed_in? %>
                   
                   <li class="nav-item mt-3">
-                    <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-warning ml-5 mr-5" style="width:100px">投稿を見る</a>
+                    <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-warning ml-5 mr-5" style="width:110px">レシピを探す</a>
                   </li>
                   <li class="nav-item mt-3">
-                    <a href="/public/posts/new" class="nav-link text-dark btn btn-sm btn-warning mr-5" style="width:100px">レシピ投稿</a>
+                    <a href="/public/posts/new" class="nav-link text-dark btn btn-sm btn-warning mr-5" style="width:110px">レシピ投稿</a>
                   </li>
                   <li class="nav-item mt-3">
                     <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
-                      <p class="btn btn-sm btn-warning text-dark nav-link" style="width:100px">ログアウト</p>
+                      <p class="btn btn-sm btn-warning text-dark nav-link" style="width:110px">ログアウト</p>
                     <% end %>
                   </li>
                   <li class="nav-item mt-3">
-                    <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-warning nav-link text-dark ml-5 mr-5', style: 'width:100px' %>
+                    <%= link_to 'マイページ', public_user_path(current_user.id), class: 'btn btn-sm btn-warning nav-link text-dark ml-5 mr-5', style: 'width:110px' %>
                   </li>
                   <li class="nav-item">
                     <!--userごとのプロフィール画像を取得-->

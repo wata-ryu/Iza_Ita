@@ -1,8 +1,6 @@
 <div class="container px-5 px-sm-0">
-    <h2 class="text-center mt-5 mb-5">投稿詳細画面</h2>
-    <!--フラッシュメッセージの表示-->
-    <h4 class="text-center text-success"><%= flash[:notice] %></h4>
-    
+    <h2 class="text-center mt-5 mb-5">投稿詳細</h2>
+
     <div class="row">
         <div class="col-md-2 mt-5">
             <!--userごとのプロフィール画像を取得-->
@@ -35,7 +33,7 @@
             <%  else %>
             <% end %>
         </div>
-        
+
         <div class="col-md-5 mx-auto">
         　<table class="table table-borderless">
             <tbody>
@@ -65,7 +63,7 @@
           </table>
         </div>
     </div>
-    
+
     <div class="row mb-3">
       <!--ログインユーザーのみ編集、削除ボタンを表示-->
       <% if @post.user == current_user %>

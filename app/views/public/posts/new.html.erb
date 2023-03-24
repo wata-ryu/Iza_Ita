@@ -1,6 +1,6 @@
 <div class="main up-image">
   <div class="container px-5 px-sm-0">
-      <h2 class="text-center pt-3 mb-5">投稿画面</h2>
+      <h1 class="text-center pt-3 mb-5">レシピ投稿</h1>
       <!--バリデーションによるエラー表示 -->
       <% if @post.errors.any? %>
         <p class="text-danger"><%= @post.errors.count %>件のエラーが発生しました！</p>
@@ -20,13 +20,13 @@
             <h5 class="mt-5 text-center">
               <%= f.radio_button :release, 'true' %>
               <%= f.label :release, '公開　', value: true %>
-              
+
               <%= f.radio_button :release, 'false' %>
               <%= f.label :release, '非公開', value: false %>
             </h5>
             <p class="mt-5 text-center"><%= f.submit '投稿する', class: 'btn btn-success' %></p>
           </div>
-          
+
           <div class="col-md-6 mx-auto">
               <table class="table table-borderless table-inverse">
                 <tbody>
