@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   def search
     @range = params[:range]
     @word = params[:word]
-    
+
     if @range == "User"
       #検索対象モデルがUserの時、admin用
       @users_admin = User.looks_for_admin(params[:search], params[:word]).page(params[:page])

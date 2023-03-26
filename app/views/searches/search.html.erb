@@ -1,18 +1,18 @@
-<!--ユーザーが検索-->  
+<!--ユーザーが検索-->
 <% if user_signed_in? %>
   <div class="container px-5 px-sm-0">
-  
+
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
   <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
-  
+
       <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
       <%= render 'user', users: @users %>
-      
+
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
       <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
-      
+
       <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
       <%= render 'public/posts/list', posts: @posts %>
   <% end %>
@@ -24,15 +24,15 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
   <h2 class="text-center mt-3 mb-3">ユーザー検索結果　"<%= @word %>"</h2>
-  
+
       <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
-      <%= render 'user', users: @users_admin %>
+      <%= render 'admin', users: @users_admin %>
   <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
       <h2 class="text-center mt-3 mb-3">タイトル検索結果　"<%= @word %>"</h2>
-      
+
       <!--投稿一覧,render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] -->
-      <%= render 'public/posts/list', posts: @posts%>
+      <%= render 'admin/posts/list', posts: @posts%>
   <% end %>
   </div>
-<% end %>  
+<% end %>
