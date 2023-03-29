@@ -6,16 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Genre.create([
-    { name: '肉類' },
-    { name: '魚介類' },
-    { name: '発酵食品'},
-    { name: '野菜類'},
-    { name: '白米、パン類'},
-    { name: '粉物類'},
-    { name: '甘味類'},
-    { name: 'その他'},
-    ])
+#seedsが０の時のみ実行（複数回走らせないようにしている）
+if Genre.all.length.zero?
+    Genre.create([
+        { name: '肉類' },
+        { name: '魚介類' },
+        { name: '発酵食品'},
+        { name: '野菜類'},
+        { name: '白米、パン類'},
+        { name: '粉物類'},
+        { name: '甘味類'},
+        { name: 'その他'},
+        ])
+end
 
 #管理者でログイン機能を実装しない場合はここで定義してrake db:seedを実行する
 #!をつけることで途中でエラーを吐き出してくれる

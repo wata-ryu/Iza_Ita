@@ -25,41 +25,8 @@
           <div class="col-xl-8">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <ul class="navbar-nav">
-                <!--ログイン後、管理者用ヘッダー-->
-                <% if admin_signed_in? %>
-                  <h2 class="text-white text-center pt-4 pr-5">Administrator</h2>
-                  <li class="nav-item mt-4">
-                    <a href= "/admin/posts" class="nav-link text-dark btn btn-sm btn-warning ml-3" style="width:120px">投稿一覧</a>
-                  </li>
-                  <li class="nav-item mt-4">
-                    <a href="/admin/users" class="nav-link text-dark btn btn-sm btn-warning ml-3 mr-3" style="width:120px">会員一覧</a>
-                  </li>
-                  <li class="nav-item mt-4 mr-5">
-                    <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
-                      <p class="nav-link text-dark btn btn-sm btn-warning" style="width:120px">ログアウト</p>
-                    <% end %>
-                  </li>
-                  <!--キーワード検索機能ー-->
-                  <div class="search_form pr-5">
-                    <%= form_with url: search_path, local: true, method: :get do |f| %>
-                    <table class="table table-borderless table-inverse">
-                      <tbody>
-                        <tr>
-                          <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
-                          <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
-                        </tr>
-                        <tr>
-                          <td><%= f.text_field :word %></td>
-                          <td><%= f.submit "検索", class: "btn btn-primary" %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <% end %>
-                  </div>
-
-                  <!--ログイン後、ユーザー共通ヘッダー-->
-                  <% elsif user_signed_in? %>
-
+                <!--ログイン後、ユーザー共通ヘッダー-->
+                <% if user_signed_in? %>
                   <li class="nav-item mt-3">
                     <a href="/public/posts" class="nav-link text-dark btn btn-sm btn-warning ml-5 mr-5" style="width:110px">レシピを探す</a>
                   </li>
@@ -99,10 +66,42 @@
                       </tbody>
                     </table>
                     <% end %>
-
                   </div>
 
-                  <% else %>
+                <!--ログイン後、管理者用ヘッダー-->
+                <% elsif admin_signed_in? %>
+                  <h2 class="text-white text-center pt-4 pr-5">Administrator</h2>
+                  <li class="nav-item mt-4">
+                    <a href= "/admin/posts" class="nav-link text-dark btn btn-sm btn-warning ml-3" style="width:120px">投稿一覧</a>
+                  </li>
+                  <li class="nav-item mt-4">
+                    <a href="/admin/users" class="nav-link text-dark btn btn-sm btn-warning ml-3 mr-3" style="width:120px">会員一覧</a>
+                  </li>
+                  <li class="nav-item mt-4 mr-5">
+                    <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
+                      <p class="nav-link text-dark btn btn-sm btn-warning" style="width:120px">ログアウト</p>
+                    <% end %>
+                  </li>
+                  <!--キーワード検索機能ー-->
+                  <div class="search_form pr-5">
+                    <%= form_with url: search_path, local: true, method: :get do |f| %>
+                    <table class="table table-borderless table-inverse">
+                      <tbody>
+                        <tr>
+                          <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
+                          <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
+                        </tr>
+                        <tr>
+                          <td><%= f.text_field :word %></td>
+                          <td><%= f.submit "検索", class: "btn btn-primary" %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <% end %>
+                  </div>
+
+                <!--ログイン前、管理者、ユーザー共通ヘッダー-->
+                <% else %>
                   <li class="nav-item pt-4 ml-3">
                     <a href="/users/sign_up" class="nav-link text-dark btn btn-light" style="width:150px">新規登録</a>
                   </li>
