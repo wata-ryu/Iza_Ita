@@ -13,24 +13,49 @@
  *= require_tree .
  *= require_self
  */
- body {
-   margin: 0;
-   padding: 0;
-   font-family: serif;
-}
- .sticky-top {
+
+/* スマホ用のCSSはメディアクエリの外に記述する0~425px */
+.sticky-top {
      background-color: black;
- }
-
-.image_circle {
- background-image: image-url("logo.jpg");
- border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
- width:  78px;       /* ※縦横を同値に */
- height: 78px;       /* ※縦横を同値に */
- background-position: center 51%;
 }
-
 .pagination {
     justify-content: center;
 }
+.image_circle {
+    background-image: image-url("logo.jpg");
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width:  60px;       /* ※縦横を同値に */
+    height: 60px;       /* ※縦横を同値に */
+    background-position: center 51%;
+}
+.user-btn {
+ width: 100px;
+}
+.user-name {display:none}
 
+.user-head {
+    margin: 0 auto;
+}
+
+/*  col-xs（426px以上）のサイズ用　*/
+@media screen and (min-width: 426px) {
+ .sticky-top {
+     background-color: black;
+ }
+ .pagination {
+    justify-content: center;
+ }
+ .image_circle {
+    background-image: image-url("logo.jpg");
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width:  78px;       /* ※縦横を同値に */
+    height: 78px;       /* ※縦横を同値に */
+    background-position: center 51%;
+ }
+ .user-btn {
+   width: 110px;
+ }
+ .user-head {
+    margin: 0 auto;
+}
+}

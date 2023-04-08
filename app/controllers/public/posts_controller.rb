@@ -1,9 +1,9 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   #Bootstrap の flash messageを使えるようにキーを許可する
   add_flash_types :success, :info, :warning, :danger
-  
+
   def new
     @post = Post.new
   end
@@ -44,7 +44,8 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-     if @post.update(post_params)
+     if @post.user == current_user
+      @post.update(post_params)
       redirect_to public_post_path(@post)
      else
         render:edit
@@ -57,7 +58,7 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to public_user_path(current_user)
   end
-  
+
   private
   #ストロングパラメータ
   def post_params

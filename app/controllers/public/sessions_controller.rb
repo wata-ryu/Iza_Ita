@@ -8,13 +8,13 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     public_posts_path
   end
-  
+  #ログアウト後に遷移するpathを設定
   def after_sign_out_path_for(resource)
-    new_user_session_path # ログアウト後に遷移するpathを設定
+    new_user_session_path
   end
   
   protected
-  # 退会しているかを判断するメソッド
+  #退会しているかを判断するメソッド
   def user_state
     ## 【処理内容1】 入力されたemailからアカウントを1件取得
     @user = User.find_by(email: params[:user][:email])

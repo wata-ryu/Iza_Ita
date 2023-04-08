@@ -33,8 +33,13 @@
     </div>
       <% if @user == current_user %>
       <div class="d-flex">
-        <div class="text-center mx-auto"><%= f.submit "更　新", class: 'btn btn-success', style: 'width:100px' %></div>
-        <div class="text-center mx-auto"><%= link_to "退　会", public_users_unsubscribe_path, class: 'btn btn-danger', style: 'width:100px' %></div>
+        <div class="text-center mx-auto"><%= f.submit "更　　新", class: 'btn btn-success', style: 'width:120px' %></div>
+        <div class="text-center mx-auto">
+          <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
+            <p class="btn btn-warning text-dark nav-link" style="width:120px">ログアウト</p>
+          <% end %>
+        </div>
+        <div class="text-center mx-auto"><%= link_to "退　　会", public_users_unsubscribe_path, class: 'btn btn-danger', style: 'width:120px' %></div>
       </div>
       <% end %>
     <% end %>
