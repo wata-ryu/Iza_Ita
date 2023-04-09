@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
 /* スマホ用のCSSはメディアクエリの外に記述する0~425px */
 .sticky-top {
      background-color: black;
@@ -28,14 +27,18 @@
     height: 60px;       /* ※縦横を同値に */
     background-position: center 51%;
 }
+.start-btn {
+  width: 90px;
+}
 .user-btn {
- width: 100px;
+  width: 80px;
 }
 .user-name {display:none}
 
 .user-head {
     margin: 0 auto;
 }
+
 
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
@@ -52,10 +55,13 @@
     height: 78px;       /* ※縦横を同値に */
     background-position: center 51%;
  }
+ .start-btn {
+  width: 110px;
+ }
  .user-btn {
    width: 110px;
  }
  .user-head {
     margin: 0 auto;
-}
+ }
 }

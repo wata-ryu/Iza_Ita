@@ -1,39 +1,39 @@
 <div class="main-image">
   <div class="container px-5 px-sm-0">
-      <div class="d-flex row">
-          <div class="col-md-6 col-xs-12 mt-5 mx-auto">
-            <h1 class="mb-5 text-center text-light">新規会員登録</h1>
+      <div class="row">
+          <div class="col-md-6 col-12 mt-5 mx-auto">
+            <h1 class="title mb-5 text-center text-light">新規会員登録</h1>
   
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= render "public/shared/error_messages", resource: resource %>
               <table class="table table-borderless table-inverse">
                 <tbody>
                   <tr>
-                    <td><h5 class="text-light">ニックネーム</h5><p class="text-light">(２〜１０文字)</p></td>
+                    <td><h5 class="details text-light">ニックネーム</h5><p class="details text-light">(２〜１０文字)</p></td>
                     <td><%= f.text_field :name, autofocus: true, class: 'form-control' %></td>
                   </tr>
                   <tr>
-                    <td><h5 class="text-light">メールアドレス</h5></td>
+                    <td><h5 class="details text-light">メールアドレス</h5></td>
                     <td><%= f.email_field :email, autocomplete: "email", class: 'form-control' %></td>
                   </tr>
                   <tr>
                     <td>
-                      <h5 class="text-light">パスワード</h5>
+                      <h5 class="details text-light">パスワード</h5>
                       <% if @minimum_password_length %>
-                      <p class="text-light">(<%= @minimum_password_length %> 文字以上)</p>
+                      <p class="details text-light">(<%= @minimum_password_length %> 文字以上)</p>
                       <% end %>
                     </td>
                     <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></td>
                   </tr>
                   <tr>
-                    <td><h5 class="text-light">パスワード</h5><p class="text-light">（確認用）</p></td>
+                    <td><h5 class="details text-light">パスワード</h5><p class="details text-light">(確認用)</p></td>
                     <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %></td>
                   </tr>
                 </tbody>
               </table>
               <p class="text-center"><%= f.submit "　新規登録　", class: 'btn btn-success btn' %></p>
             <% end %>
-            <h5 class="text-center text-light">既にご登録済みの方は<%= render "public/shared/links" %>からログインしてください。</h5>
+            <h5 class="details text-center text-light">既にご登録済みの方は<%= render "public/shared/links" %>からログインしてください。</h5>
           </div>
       </div>
   </div>

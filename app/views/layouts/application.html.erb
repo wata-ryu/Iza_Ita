@@ -16,7 +16,7 @@
   <body>
     <header class="sticky-top">
       <div class="container">
-        <div class="user-style row">
+        <div class="user-style row mx-auto">
           <!--ログイン後、ユーザー共通ヘッダー-->
           <% if user_signed_in? %>
           <div class="user-head col-md-1 col-3 pt-3">
@@ -32,7 +32,7 @@
           <!--div class="user-head col-md-2 col-6">
             <%#= link_to 'マイページ', public_user_path(current_user.id), class: 'user-btn btn btn-sm btn-warning nav-link text-dark' %>
           </div-->
-           <div class="col-md-1 col-3 pt-4">
+           <div class="col-md-1 col-3 pt-3">
             <!--userごとのプロフィール画像を取得-->
             <%= link_to public_user_path(current_user.id) do %>
               <p>
@@ -41,11 +41,11 @@
               </p>
             <% end %>
           </div>
-          <div class="col-md-3 col-10">
+          <div class="col-md-3 col-12">
             <!--キーワード検索機能ー-->
             <div class="search_form">
               <%= form_with url: search_path, local: true, method: :get do |f| %>
-              <table class="table table-borderless table-inverse">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
@@ -110,10 +110,10 @@
             <a href="/"><img class="image_circle"></a>
           </div>
           <div class="col-md-4 col-4 pt-3">
-            <a href="/users/sign_up" class="user-btn nav-link text-dark btn btn-sm btn-light">新規登録</a>
+            <a href="/users/sign_up" class="start-btn nav-link text-dark btn btn-sm btn-light">新規登録</a>
           </div>
           <div class="col-md-4 col-4 pt-3">
-            <a href="/users/sign_in" class="user-btn nav-link text-dark btn btn-sm btn-light">ログイン</a>
+            <a href="/users/sign_in" class="start-btn nav-link text-dark btn btn-sm btn-light">ログイン</a>
           </div>
           <% end %>
         </div>

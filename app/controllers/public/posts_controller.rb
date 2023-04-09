@@ -55,8 +55,10 @@ class Public::PostsController < ApplicationController
   def destroy
     #投稿削除後、マイページへ
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to public_user_path(current_user)
+    if @post.user == current_user
+     @post.destroy
+     redirect_to public_user_path(current_user)
+    end
   end
 
   private
