@@ -1,20 +1,62 @@
 // Place all the styles related to the public/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* スマホ用のCSSはメディアクエリの外に記述する0~425px */
 .up-image {
   height: 880px;
   background-image: image-url("up_image.png");
   background-size: cover;
   background-position: center 80%;
 }
-
 .index-image {
-  height: 238px;
+  height: 150px;
   background-image: image-url("index4.png");
   background-size: cover;
   background-position: center 60%;
 }
-
 .posts-title {
   font-family: 'Alkatra', cursive;
+  font-size: 23px;
+}
+.genre-name {
+  font-size: 16px;
+}
+.user-image {
+}
+.daytimes {
+  font-size: 12px;
+}
+.counts {
+  font-size: 12px;
+}
+.user-title {
+  font-size: 20px;
+}
+
+/*  col-xs（426px以上）のサイズ用　*/
+@media screen and (min-width: 426px) {
+  .up-image {
+    height: 880px;
+    background-image: image-url("up_image.png");
+    background-size: cover;
+    background-position: center 80%;
+  }
+  .index-image {
+    height: 238px;
+    background-image: image-url("index4.png");
+    background-size: cover;
+    background-position: center 60%;
+  }
+  .posts-title {
+    font-family: 'Alkatra', cursive;
+    font-size: 40px;
+    padding-left: 100px;
+  }
+  .genre-name {
+    margin-top: 70px;
+    font-size: 25px;
+  }
+  .post-images {
+  }
 }

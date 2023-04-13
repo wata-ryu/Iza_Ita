@@ -31,9 +31,11 @@
   width: 90px;
 }
 .user-btn {
-  width: 80px;
+  width: 70px;
 }
-.user-name {display:none}
+.user-name {
+  display:none
+}
 
 .user-head {
     margin: 0 auto;
@@ -51,8 +53,8 @@
  .image_circle {
     background-image: image-url("logo.jpg");
     border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    width:  78px;       /* ※縦横を同値に */
-    height: 78px;       /* ※縦横を同値に */
+    width:  60px;       /* ※縦横を同値に */
+    height: 60px;       /* ※縦横を同値に */
     background-position: center 51%;
  }
  .start-btn {
