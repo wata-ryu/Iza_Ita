@@ -1,75 +1,55 @@
 <div class="main room-image">
-  <div class="container px-5 px-lg-0">
-      <h1 class="pt-5 mb-3 text-center"><%= @user.name %>の部屋</h1>
+  <div class="container px-3 px-lg-0">
+      <h1 class="posts-title pt-2 pb-2 border-top border-bottom mt-3 mb-3 text-center"><%= @user.name %>の部屋</h1>
       <!--マイページ表示-->
-      <div class="row">
-          <div class="col-md-10 mx-auto mt-3">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td style="width: 25%"><%= image_tag @user.get_profile_image(200,200), class: 'rounded-circle' %></td>
-                    <td style="width: 25%px">
-                      <h5>ニックネーム</h5>
-                      <br>
-                      <h5>自己紹介</h5>
-                    </td>
-                    <td style="width: 40%">
-                      <h5><%= @user.name %></h5>
-                      <br>
-                      <h5><%= @user.introduction %></h5>
-                    </td style="width: 10%">
-                    <td>
-                      <!--ログインユーザーのみ編集ボタンを表示-->
-                      <% if @user == current_user %>
-                        <%= link_to '編　集', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:110px' %>
-                        <br>
-                        <%= link_to 'お気に入り', public_user_users_favorite_path(@user), class: 'btn btn-sm btn-primary nav-link text-white', style: 'width:110px' %>
-                      <% end %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
+      <div class="row mx-auto">
+        <div class="col-md-4 col-12">
+          <p class="text-center"><%= image_tag @user.get_profile_image(200,200), class: 'rounded-circle' %></p>
+        </div>
+        
+        <div class="col-md-3 col-5 mx-auto">
+          <h5 class="post-details mb-3">ニックネーム</h5>
+          <h5 class="post-details">自己紹介</h5>
+        </div>
+        
+         <div class="col-md-5 col-7 mx-auto">
+           <h5 class="post-details mb-3"><%= @user.name %></h5>
+           <h5 class="post-details"><%= @user.introduction %></h5>
+        </div>
+        
+        <div class="col-md-5 col-6 mx-auto mt-3">
+          <!--ログインユーザーのみ編集ボタンを表示-->
+          <% if @user == current_user %>
+            <p class="text-center"><%= link_to '編　集', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:110px' %></p>
+            <p><%= link_to 'お気に入り', public_user_users_favorite_path(@user), class: 'btn btn-sm btn-primary nav-link text-white', style: 'width:110px' %></p>
+          <% end %>
+        </div>
+          
       </div>
       <!--ユーザーごとの投稿一覧表示-->
-      <div class="row border-top">
-        <div class="col-md-10 mx-auto">
-        <h2 class="mt-3 mb-3 text-center"><%= @user.name %>の投稿一覧</h2>
+      <h2 class="posts-title pt-2 pb-2 mt-3 mb-3 text-center border-top border-bottom"><%= @user.name %>の投稿一覧</h2>
+      <div class="row mx-auto">
         <% @posts.each do |post| %>
-            <div class="border-top">
-              　<table class="table table-borderless">
-                  <tbody>
-                    <tr>
-                      <td style="width: 60%">
-                        <%= link_to public_post_path(post) do %>
-                        <p class="text-center">
-                          <%= image_tag post.image, size: "200x200" %>
-                        </p>
-                        <% end %>
-                      </td>
-                      <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                      <td style="width: 40%">
-                          <h3><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3><br>
-                          <% post.genres.each do |genre| %>
-                          #　<%= genre.name %><br>
-                          <% end %>
-                          <br>
-                          #　<%= post.alcohol %>に相性抜群！<br>
-                          <br>
-                          #　<%= truncate(post.summary, length: 20) %>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></td>
-                      <td><%= post.created_at.to_s(:datetime_jp) %></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-        <% end %>
+        <div class="col-md-6 col-12 mx-auto">
+          <%= link_to public_post_path(post) do %>
+            <p class="text-center"><%= image_tag post.image, size: "200x200" %></p>
+          <% end %>
+          <p class="text-center"><%= post.created_at.to_s(:datetime_jp) %></p>
+          <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
         </div>
+                      
+        <div class="col-md-6 col-9 mx-auto">
+          <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+          <h3 class="user-title text-center"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
+          <% post.genres.each do |genre| %>
+          <p class="post-details">
+            #　<%= genre.name %><br>
+            #　<%= post.alcohol %>に相性抜群！<br>
+            #　<%= truncate(post.summary, length: 20) %>
+          </p>
+          <% end %>
+        </div>
+        <% end %>
       </div>
       <h5 class="pb-5"><%= paginate @posts %></h5>
   </div>

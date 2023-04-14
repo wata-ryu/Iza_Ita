@@ -1,8 +1,8 @@
 <div class="container px-2 px-sm-0">
-    <h2 class="text-center mt-5 mb-5">投稿詳細</h2>
+    <h2 class="posts-title text-center pt-2 pb-2 border-top border-bottom mt-3 mb-3">投稿詳細</h2>
 
-    <div class="row">
-        <div class="col-md-2 col-12 mt-5">
+    <div class="row mx-auto">
+        <div class="col-md-2 col-12 mt-3">
             <!--userごとのプロフィール画像を取得-->
             <%= link_to public_user_path(@post.user.id) do %>
             <p class="text-center">
@@ -35,36 +35,18 @@
             <% end %>
         </div>
 
-        <div class="col-md-5 col-12 mx-auto">
-        　<table class="table table-borderless">
-            <tbody>
-              <tr>
-                  <td><h3><%= @post.title %></h3></td>
-              </tr>
-              <tr>
-                  <td>
-                    <% @post.genres.each do |genre| %>
-                      #　<%= genre.name %><br>
-                    <% end %>
-                  </td>
-              </tr>
-              <tr>
-                  <td>#　<%= @post.alcohol %>に相性抜群！</td>
-              </tr>
-              <tr>
-                  <td>#　<%= @post.summary %></td>
-              </tr>
-              <tr>
-                  <td>#　<%= @post.ingredient %></td>
-              </tr>
-              <tr>
-                  <td>#　<%= @post.cook %></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="col-md-5 col-10 mx-auto">
+          <h3 class="text-center"><%= @post.title %></h3>
+          <% @post.genres.each do |genre| %>
+          <p>#　<%= genre.name %></p>
+          <% end %>
+          <p>#　<%= @post.alcohol %>に相性抜群！<p>
+          <p>#　<%= @post.summary %></p>
+          <p>#　<%= @post.ingredient %></p>
+          <p>#　<%= @post.cook %></p>
         </div>
 
-        <div class="col-md-12 col-12 mb-3">
+        <div class="col-md-12 col-10 mb-3">
           <!--ログインユーザーのみ編集、削除ボタンを表示-->
           <% if @post.user == current_user %>
             <div class="mx-auto">
@@ -103,34 +85,30 @@
             </div>
           <% end %>
         </div>
-          
-        <!--コメント表示-->
-        <% @comments.each do |comment| %>
-        <div class="col-md-8 col-12 mx-auto border-top">
-          　<table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <td style="width: 20%">
-                    <p class="text-center"><%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %></p>
-                    <p class="text-center"><%= comment.user.name %></p>
-                  </td>
-                  <td style="">
-                    <%= comment.comment %><br>
-                    <br>
-                    <%= comment.created_at.to_s(:datetime_jp) %>
-                  </td>
-                  <td style="">
-                    <!--コメント削除機能、ログインユーザーのみ表示-->
-                    <% if comment.user == current_user %>
-                      <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:70px', "data-confirm" => "本当に削除しますか？") do %>
-                        <span>削除</span>
-                      <% end %>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-        <% end %>
     </div>
+    
+    <!--コメント表示-->
+    <% @comments.each do |comment| %>
+    <div class="row mx-auto pt-3 pb-3 border-top">
+      <div class="col-md-3 col-3 mx-auto">
+        <p class="text-center"><%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %></p>
+        <p class="text-center"><%= comment.user.name %></p>
+      </div>
+      
+      <div class="col-md-6 col-9 mx-auto">
+        <%= comment.comment %><br>
+        <br>
+        <%= comment.created_at.to_s(:datetime_jp) %>
+      </div>
+      
+      <div class="col-md-3 col-6 mx-auto">
+        <!--コメント削除機能、ログインユーザーのみ表示-->
+        <% if comment.user == current_user %>
+          <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:70px', "data-confirm" => "本当に削除しますか？") do %>
+            <span>削除</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
 </div>

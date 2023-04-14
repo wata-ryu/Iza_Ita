@@ -21,11 +21,11 @@
     justify-content: center;
 }
 .image_circle {
-    background-image: image-url("logo.jpg");
+    background-image: image-url("logo2.png");
     border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
     width:  60px;       /* ※縦横を同値に */
     height: 60px;       /* ※縦横を同値に */
-    background-position: center 51%;
+    background-position: center center;
 }
 .start-btn {
   width: 90px;
@@ -40,7 +40,13 @@
 .user-head {
     margin: 0 auto;
 }
-
+.posts-title {
+  font-family: 'Alkatra', cursive;
+  font-size: 23px;
+}
+.post-details {
+  font-size: 14px;
+}
 
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
@@ -51,11 +57,11 @@
     justify-content: center;
  }
  .image_circle {
-    background-image: image-url("logo.jpg");
+    background-image: image-url("logo2.png");
     border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    width:  60px;       /* ※縦横を同値に */
-    height: 60px;       /* ※縦横を同値に */
-    background-position: center 51%;
+    width: 60px;       /* ※縦横を同値に */
+    height: 60px;     /* ※縦横を同値に */
+    background-position: center 40%;
  }
  .start-btn {
   width: 110px;
@@ -65,5 +71,15 @@
  }
  .user-head {
     margin: 0 auto;
+ }
+ .posts-title {
+  font-family: 'Alkatra', cursive;
+  font-size: 40px;
+ }
+ .post-details {
+  font-size: 20px;
+ }
+ .user-title {
+  font-size: 30px;
  }
 }

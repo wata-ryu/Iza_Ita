@@ -23,7 +23,7 @@
 
   <div class="col-md-4 col-9 mx-auto mt-3">
     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-    <h3 class="user-title"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
+    <h3 class="user-title text-center"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
     <% post.genres.each do |genre| %>
     <p class="post-details">
       # <%= genre.name %><br>
