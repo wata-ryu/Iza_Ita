@@ -21,14 +21,16 @@
     <p class="counts text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
   </div>
 
-  <div class="col-md-4 col-8 mx-auto mt-3">
+  <div class="col-md-4 col-9 mx-auto mt-3">
     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
     <h3 class="user-title"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
     <% post.genres.each do |genre| %>
-    # <%= genre.name %><br>
-    <% end %>
-    # <%= post.alcohol %>に相性抜群！<br>
-    # <%= truncate(post.summary, length: 40) %>
+    <p class="post-details">
+      # <%= genre.name %><br>
+      <% end %>
+      # <%= post.alcohol %>に相性抜群！<br>
+      # <%= truncate(post.summary, length: 40) %>
+    </p>
   </div>
 </div>
 <% end %>

@@ -1,6 +1,6 @@
 <div class="main up-image">
-  <div class="container px-5 px-sm-0">
-      <h1 class="text-center pt-3 mb-5">レシピ投稿</h1>
+  <div class="container px-3 px-sm-0">
+      <h1 class="posts-title text-center pt-3 mb-5">レシピ投稿</h1>
       <!--バリデーションによるエラー表示 -->
       <% if @post.errors.any? %>
         <p class="text-danger"><%= @post.errors.count %>件のエラーが発生しました！</p>
@@ -14,10 +14,10 @@
         <!--投稿機能このURLはcreateへ飛ばすURL-->
         <%= form_with model: @post, url: public_posts_path do |f| %>
         <div class="row">
-          <div class="col-md-3 mx-auto">
+          <div class="col-md-3 col-12 mx-auto">
             <h5 class="text-center mt-5 mb-3">投稿画像</h5>
             <%= f.file_field :image, accept: "image/*" %>
-            <h5 class="mt-5 text-center">
+            <h5 class="post-details mt-5 text-center">
               <%= f.radio_button :release, 'true' %>
               <%= f.label :release, '公開　', value: true %>
 
@@ -27,15 +27,15 @@
             <p class="mt-5 text-center"><%= f.submit '投稿する', class: 'btn btn-success' %></p>
           </div>
 
-          <div class="col-md-6 mx-auto">
+          <div class="col-md-6 col-12 mx-auto">
               <table class="table table-borderless table-inverse">
                 <tbody>
                   <tr>
-                    <td><h5>タイトル</h5></td>
+                    <td><h5 class="post-details">タイトル</h5></td>
                     <td><%= f.text_field :title, autofocus: true, class: 'form-control', placeholder:"コンビニで創作激うま唐揚げ" %></td>
                   </tr>
                   <tr>
-                    <td><h5>ジャンル<br>(複数可)</h5></td>
+                    <td><h5 class="post-details">ジャンル<br>(複数可)</h5></td>
                     <td>
                       <div class="select">
                         <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
@@ -50,19 +50,19 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><h5>合う酒</h5></td>
-                    <td><%= f.text_field :alcohol, class: 'form-control', placeholder:"ビール、ハイボール" %>に相性抜群！</td>
+                    <td><h5 class="post-details">合う酒</h5></td>
+                    <td><h5 class="post-details"><%= f.text_field :alcohol, class: 'form-control', placeholder:"ビール、ハイボール" %>に相性抜群！</h5></td>
                   </tr>
               　　<tr>
-                    <td><h5>概要</h5></td>
+                    <td><h5 class="post-details">概要</h5></td>
                     <td><%= f.text_area :summary, class: 'form-control', placeholder:"コンビニ唐揚げをさらに美味しく食べる方法、見つけました！" %></td>
                   </tr>
                   <tr>
-                    <td><h5>材料</h5></td>
+                    <td><h5 class="post-details">材料</h5></td>
                     <td><%= f.text_area :ingredient, class: 'form-control', placeholder:"・コンビニ唐揚げ ・キムチ" %></td>
                   </tr>
                 　<tr>
-                    <td><h5>作り方</h5></td>
+                    <td><h5 class="post-details">作り方</h5></td>
                     <td><%= f.text_area :cook, class: 'form-control', placeholder:"買う、乗せる、ビールと流し込む、以上！" %></td>
                   </tr>
                 </tbody>

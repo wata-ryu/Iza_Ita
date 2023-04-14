@@ -33,6 +33,16 @@
 .user-title {
   font-size: 20px;
 }
+.post-details {
+  font-size: 14px;
+}
+.detail-images {
+  height: 300px;
+  width: 300px;
+}
+.comment-title {
+  font-size: 15px;
+}
 
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
@@ -58,5 +68,8 @@
     font-size: 25px;
   }
   .post-images {
+  }
+  .post-details {
+  font-size: 20px;
   }
 }

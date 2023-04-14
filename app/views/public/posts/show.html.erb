@@ -1,8 +1,8 @@
-<div class="container px-5 px-sm-0">
+<div class="container px-2 px-sm-0">
     <h2 class="text-center mt-5 mb-5">投稿詳細</h2>
 
     <div class="row">
-        <div class="col-md-2 mt-5">
+        <div class="col-md-2 col-12 mt-5">
             <!--userごとのプロフィール画像を取得-->
             <%= link_to public_user_path(@post.user.id) do %>
             <p class="text-center">
@@ -11,7 +11,8 @@
             <% end %><br>
             <p class="text-center"><%= @post.user.name %></p>
         </div>
-        <div class="col-md-5 mx-auto">
+        
+        <div class="col-md-5 col-12 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
             <!--いいね機能-->
             <% if @post.bookmarked_by?(current_user) %>
@@ -34,7 +35,7 @@
             <% end %>
         </div>
 
-        <div class="col-md-5 mx-auto">
+        <div class="col-md-5 col-12 mx-auto">
         　<table class="table table-borderless">
             <tbody>
               <tr>
@@ -62,70 +63,74 @@
             </tbody>
           </table>
         </div>
-    </div>
 
-    <div class="row mb-3">
-      <!--ログインユーザーのみ編集、削除ボタンを表示-->
-      <% if @post.user == current_user %>
-        <div class="mx-auto">
-        <!--編集機能ボタン-->
-          <%= link_to '投稿編集', edit_public_post_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
-        </div>
-        <!--削除機能ボタン-->
-        <div class="mx-auto">
-        <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
-          <span>投稿削除</span>
-        <% end %>
-        </div>
-        <% else %>
-      <% end %>
-    </div>
-    <div class="mx-auto border-top">
-      <h4 class="text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
-      <!--バリデーションによるエラー表示 -->
-      <% if @comment.errors.any? %>
-        <p class="text-danger"><%= @comment.errors.count %>件のエラーが発生しました！</p>
-        <ul>
-          <% @comment.errors.full_messages.each do |message| %>
-            <li class="text-danger"><%= message %></li>
+        <div class="col-md-12 col-12 mb-3">
+          <!--ログインユーザーのみ編集、削除ボタンを表示-->
+          <% if @post.user == current_user %>
+            <div class="mx-auto">
+            <!--編集機能ボタン-->
+              <%= link_to '編 集', edit_public_post_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:100px' %>
+            </div>
+            <!--削除機能ボタン-->
+            <div class="mx-auto">
+            <%= link_to(public_post_path(@post), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
+              <span>削 除</span>
+            <% end %>
+            </div>
+            <% else %>
           <% end %>
-        </ul>
-      <% end %>
-      <div>
-        <!--コメント機能-->
-        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
-          <div class="mx-auto">
-            <p class="text-center"><%= f.text_area :comment, size: "60x3", placeholder: "コメントはここに" %></p>
-            <p class="text-center ml-3"><%= f.submit "送信", class: 'btn btn-success btn-sm', style: 'width:60px' %></p>
-          </div>
-        <% end %>
-      </div>
-      <% @comments.each do |comment| %>
-      <div class="col-md-8 mx-auto border-top">
-        　<table class="table table-borderless">
-            <tbody>
-              <tr>
-                <td style="width: 25%">
-                  <p class="text-center"><%= image_tag comment.user.get_profile_image(80,80), class: 'rounded-circle' %></p>
-                  <p class="text-center"><%= comment.user.name %></p>
-                </td>
-                <td style="width: 50%">
-                  <%= comment.comment %><br>
-                  <br>
-                  <%= comment.created_at.to_s(:datetime_jp) %>
-                </td>
-                <td style="width: 25%">
-                  <!--コメント削除機能、ログインユーザーのみ表示-->
-                  <% if comment.user == current_user %>
-                    <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:120px', "data-confirm" => "本当に削除しますか？") do %>
-                      <span>コメント削除</span>
+        </div>
+    
+        <div class="col-md-12 col-12 mx-auto border-top">
+          <h4 class="comment-title text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
+          <!--バリデーションによるエラー表示 -->
+          <% if @comment.errors.any? %>
+            <p class="text-danger"><%= @comment.errors.count %>件のエラーが発生しました！</p>
+            <ul>
+              <% @comment.errors.full_messages.each do |message| %>
+                <li class="text-danger"><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        
+        <div class="col-md-12 col-12 mx-auto">
+          <!--コメント機能-->
+          <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
+            <div class="mx-auto">
+              <p class="text-center"><%= f.text_area :comment, size: "32x3", placeholder: "コメントはここに" %></p>
+              <p class="text-center ml-3"><%= f.submit "送信", class: 'btn btn-success btn-sm', style: 'width:60px' %></p>
+            </div>
+          <% end %>
+        </div>
+          
+        <!--コメント表示-->
+        <% @comments.each do |comment| %>
+        <div class="col-md-8 col-12 mx-auto border-top">
+          　<table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td style="width: 20%">
+                    <p class="text-center"><%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %></p>
+                    <p class="text-center"><%= comment.user.name %></p>
+                  </td>
+                  <td style="">
+                    <%= comment.comment %><br>
+                    <br>
+                    <%= comment.created_at.to_s(:datetime_jp) %>
+                  </td>
+                  <td style="">
+                    <!--コメント削除機能、ログインユーザーのみ表示-->
+                    <% if comment.user == current_user %>
+                      <%= link_to(public_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:70px', "data-confirm" => "本当に削除しますか？") do %>
+                        <span>削除</span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
-      <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <% end %>
     </div>
 </div>
