@@ -47,6 +47,9 @@
 .post-details {
   font-size: 14px;
 }
+.daytimes {
+  font-size: 12px;
+}
 
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
@@ -81,5 +84,8 @@
  }
  .user-title {
   font-size: 30px;
+ }
+ .daytimes {
+  font-size: 15px;
  }
 }

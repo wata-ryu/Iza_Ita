@@ -17,7 +17,7 @@
            <h5 class="post-details"><%= @user.introduction %></h5>
         </div>
         
-        <div class="col-md-5 col-6 mx-auto mt-3">
+        <div class="col-md-1 col-6 mx-auto mt-3">
           <!--ログインユーザーのみ編集ボタンを表示-->
           <% if @user == current_user %>
             <p class="text-center"><%= link_to '編　集', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:110px' %></p>
@@ -34,8 +34,8 @@
           <%= link_to public_post_path(post) do %>
             <p class="text-center"><%= image_tag post.image, size: "200x200" %></p>
           <% end %>
-          <p class="text-center"><%= post.created_at.to_s(:datetime_jp) %></p>
-          <p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+          <p class="daytimes text-center"><%= post.created_at.to_s(:datetime_jp) %></p>
+          <p class="daytimes text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
         </div>
                       
         <div class="col-md-6 col-9 mx-auto">
@@ -43,9 +43,9 @@
           <h3 class="user-title text-center"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
           <% post.genres.each do |genre| %>
           <p class="post-details">
-            #　<%= genre.name %><br>
-            #　<%= post.alcohol %>に相性抜群！<br>
-            #　<%= truncate(post.summary, length: 20) %>
+            # <%= genre.name %><br>
+            # <%= post.alcohol %>に相性抜群！<br>
+            # <%= truncate(post.summary, length: 20) %>
           </p>
           <% end %>
         </div>

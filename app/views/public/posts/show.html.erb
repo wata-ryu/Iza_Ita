@@ -14,6 +14,7 @@
         
         <div class="col-md-5 col-12 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
+            <p class="daytimes text-center"><%= @post.created_at.to_s(:datetime_jp) %></p>
             <!--いいね機能-->
             <% if @post.bookmarked_by?(current_user) %>
                 <%= link_to public_post_bookmarks_path(@post), method: :delete do %>
@@ -36,14 +37,14 @@
         </div>
 
         <div class="col-md-5 col-10 mx-auto">
-          <h3 class="text-center"><%= @post.title %></h3>
+          <h3 class="user-title text-center"><%= @post.title %></h3>
           <% @post.genres.each do |genre| %>
-          <p>#　<%= genre.name %></p>
+          <p class="post-details"># <%= genre.name %></p>
           <% end %>
-          <p>#　<%= @post.alcohol %>に相性抜群！<p>
-          <p>#　<%= @post.summary %></p>
-          <p>#　<%= @post.ingredient %></p>
-          <p>#　<%= @post.cook %></p>
+          <p class="post-details"># <%= @post.alcohol %>に相性抜群！<p>
+          <p class="post-details"># <%= @post.summary %></p>
+          <p class="post-details"># <%= @post.ingredient %></p>
+          <p class="post-details"># <%= @post.cook %></p>
         </div>
 
         <div class="col-md-12 col-10 mb-3">
@@ -92,13 +93,12 @@
     <div class="row mx-auto pt-3 pb-3 border-top">
       <div class="col-md-3 col-3 mx-auto">
         <p class="text-center"><%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %></p>
-        <p class="text-center"><%= comment.user.name %></p>
+        <p class="post-details text-center"><%= comment.user.name %></p>
       </div>
       
       <div class="col-md-6 col-9 mx-auto">
-        <%= comment.comment %><br>
-        <br>
-        <%= comment.created_at.to_s(:datetime_jp) %>
+        <p class="post-details"><%= comment.comment %></p>
+        <p class="daytimes"><%= comment.created_at.to_s(:datetime_jp) %></p>
       </div>
       
       <div class="col-md-3 col-6 mx-auto">

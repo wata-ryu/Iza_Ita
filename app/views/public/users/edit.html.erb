@@ -1,5 +1,5 @@
-<div class="container px-5 px-sm-0">
-    <h2 class="mt-5 mb-5 text-center">マイページ編集</h2>
+<div class="container px-3 px-sm-0">
+    <h2 class="posts-title pt-2 pb-2 border-top border-bottom mt-3 mb-3 text-center">マイページ編集</h2>
     <!--バリデーションによるエラー表示 -->
     <% if @user.errors.any? %>
       <p class="text-danger"><%= @user.errors.count %>件のエラーが発生しました！</p>
@@ -11,35 +11,32 @@
     <% end %>
                                                         <!--↓ updateのpath-->
     <%= form_with model: @user, method: :patch, url: public_user_path(current_user.id) do |f| %>
-    <div class="row mb-5">
-        <div class="col-md-3 mx-auto">
-        <p class="text-center">アイコン画像</p>
-            <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        </div>
-        <div class="col-md-6 mx-auto">
-            <table class="table table-borderless table-inverse">
-              <tbody>
-                <tr>
-                  <td>ニックネーム</td>
-                  <td><%= f.text_field :name, autofocus: true, id:"inputName", class: 'form-control' %></td>
-                </tr>
-                <tr>
-                  <td>自己紹介</td>
-                  <td><%= f.text_area :introduction, id:"inputIntroduction", class: 'form-control', style: 'height:120px' %></td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
+      <div class="row mx-auto mt-5 mb-5">
+          <div class="col-md-3 mx-auto">
+          <p class="post-details text-center">アイコン画像</p>
+              <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+          </div>
+          
+          <div class="col-md-2 col-5 mx-auto">
+            <p class="post-details pt-3">ニックネーム</p>
+            <p class="post-details pt-3">自己紹介</p>
+          </div>
+          
+          <div class="col-md-4 col-7 mx-auto">
+            <p class="pt-3"><%= f.text_field :name, autofocus: true, id:"inputName", class: 'form-control' %></p>
+            <p class=""><%= f.text_area :introduction, id:"inputIntroduction", class: 'form-control', style: 'height:100px' %></p>
+          </div>
+      </div>
+    
       <% if @user == current_user %>
-      <div class="d-flex">
-        <div class="text-center mx-auto"><%= f.submit "更　　新", class: 'btn btn-success', style: 'width:120px' %></div>
-        <div class="text-center mx-auto">
+      <div class="row mx-auto">
+        <div class="col-md-1 col-6 mx-auto">
+          <p><%= f.submit "更　　新", class: 'btn btn-sm btn-success', style: 'width:110px' %></p>
           <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
-            <p class="btn btn-warning text-dark nav-link" style="width:120px">ログアウト</p>
+            <p class="btn btn-sm btn-warning text-dark nav-link text-center" style="width:110px">ログアウト</p>
           <% end %>
+          <p><%= link_to "退　　会", public_users_unsubscribe_path, class: 'btn btn-sm btn-danger', style: 'width:110px' %></p>
         </div>
-        <div class="text-center mx-auto"><%= link_to "退　　会", public_users_unsubscribe_path, class: 'btn btn-danger', style: 'width:120px' %></div>
       </div>
       <% end %>
     <% end %>
