@@ -65,7 +65,7 @@
           <p class="daytimes"><%= comment.created_at.to_s(:datetime_jp) %></p>
         </div>
         
-        <div class="col-md-3 col-3 mx-auto">
+        <div class="col-md-3 col-3 mx-auto pb-3">
           <!--コメント強制削除-->
           <%= link_to(admin_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
             <span>強制削除</span>

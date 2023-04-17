@@ -1,33 +1,21 @@
 <% users.each do |user| %>
-<div class="row">
-  <div class="col-md-10 mx-auto border-top">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <td style="width: 30%">
-              <%= link_to admin_user_path(user.id) do %>
-                <p class="text-center">
-                  <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
-                </p>
-              <% end %>
-            </td>
-            <td style="width: 25%px">
-              <h5>ニックネーム</h5>
-              <br>
-              <h5>自己紹介</h5>
-            </td>
-            <td style="width: 50%">
-              <h5><%= user.name %></h5>
-              <br>
-              <h5><%= user.introduction %></h5>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+<div class="row mx-auto border-top pt-3 pb-3">
+  <div class="col-md-4 col-12 mx-auto">
+    <%= link_to admin_user_path(user.id) do %>
+      <p class="text-center">
+        <%= image_tag user.get_profile_image(200,200), class: 'rounded-circle' %>
+      </p>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4 col-5 mx-auto">
+    <h5 class="post-details mb-3">ニックネーム</h5>
+    <h5 class="post-details">自己紹介</h5>
+  </div>
+  
+  <div class="col-md-4 col-7 mx-auto">
+    <h5 class="post-details mb-3"><%= user.name %></h5>
+    <h5 class="post-details"><%= user.introduction %></h5>
   </div>
 </div>
 <% end %>

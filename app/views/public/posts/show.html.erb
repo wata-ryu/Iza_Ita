@@ -11,7 +11,7 @@
             <% end %>
             <p class="text-center"><%= @post.user.name %></p>
         </div>
-        
+
         <div class="col-md-5 col-12 mx-auto">
             <p class="text-center"><%= image_tag @post.image, size: "300x300" %></p>
             <p class="text-center"><%= @post.created_at.to_s(:datetime_jp) %></p>
@@ -63,7 +63,7 @@
             <% else %>
           <% end %>
         </div>
-    
+
         <div class="col-md-12 col-12 mx-auto border-top">
           <h4 class="comment-title text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
           <!--バリデーションによるエラー表示 -->
@@ -76,7 +76,7 @@
             </ul>
           <% end %>
         </div>
-        
+
         <div class="col-md-12 col-12 mx-auto">
           <!--コメント機能-->
           <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
@@ -87,7 +87,7 @@
           <% end %>
         </div>
     </div>
-    
+
     <!--コメント表示-->
     <% @comments.each do |comment| %>
     <div class="row mx-auto pt-3 pb-3 border-top">
@@ -97,12 +97,12 @@
           <%= comment.user.name %>
         </p>
       </div>
-      
+
       <div class="col-md-6 col-9 mx-auto">
         <p class="post-details"><%= comment.comment %></p>
         <p class="daytimes"><%= comment.created_at.to_s(:datetime_jp) %></p>
       </div>
-      
+
       <div class="col-md-3 col-3 mx-auto">
         <!--コメント削除機能、ログインユーザーのみ表示-->
         <% if comment.user == current_user %>
