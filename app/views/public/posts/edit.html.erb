@@ -1,5 +1,5 @@
-<div class="container px-5 px-sm-0">
-    <h2 class="text-center mt-5 mb-5">投稿編集画面</h2>
+<div class="container px-2">
+    <h2 class="posts-title pt-2 pb-2 border-bottom mt-3 mb-3 text-center">投稿編集画面</h2>
     <!--バリデーションによるエラー表示 -->
     <% if @post.errors.any? %>
       <p class="text-danger"><%= @post.errors.count %>件のエラーが発生しました！</p>
@@ -11,40 +11,44 @@
     <% end %>
     
     <!--フラッシュメッセージの表示-->
-    <p class="text-center text-success"><%= flash[:notice] %></p>
+    <p class="text-center text-success"><%#= flash[:notice] %></p>
     
     <%= form_with model: @post, method: :patch, url: public_post_path(@post) do |f| %>
-    <div class="row">
-        <div class="col-md-3 mx-auto">
-            <div>
-                <p class="text-center mt-5 mb-3">投稿画像</p>
-                <%= f.file_field :image, accept: "image/*" %>
-            </div>
-            <p class="text-center mt-5">
-                <%= f.radio_button :release, 'true' %>
-                <%= f.label :release, '公開　', value: true %>
-                
-                <%= f.radio_button :release, 'false' %>
-                <%= f.label :release, '非公開', value: false %>
-            </p>
-            <p class="text-center mt-5">
-                <%= f.submit "更新する", class: 'btn btn-success', style: 'width:100px' %>
-            </p>
+    <div class="row mx-auto">
+        <div class="col-md-3 col-12 mx-auto">
+          <p class="post-details text-center mt-3">投稿画像</p>
+          <p class="post-details text-center"><%= f.file_field :image, accept: "image/*" %></p>
         </div>
         
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-3 col-12 mx-auto">
+          <p class="post-details text-center mt-3">
+            <%= f.radio_button :release, 'true' %>
+            <%= f.label :release, '公開　', value: true %>
+            
+            <%= f.radio_button :release, 'false' %>
+            <%= f.label :release, '非公開', value: false %>
+          </p>
+        </div>
+        
+        <div class="col-md-3 col-12 mx-auto">
+          <p class="text-center mt-3">
+            <%= f.submit "更　新", class: 'btn btn-sm btn-success', style: 'width:80px' %>
+          </p>
+        </div>
+        
+        <div class="col-md-6 col-12">
         　<table class="table table-borderless">
             <tbody>
               <tr>
-                  <td>タイトル</td>
+                  <td class="post-details" style='width:30%'>タイトル</td>
                   <td><%= f.text_field :title, autofocus: true, id:"inputTitle", class: 'form-control' %></td>
                   <td></td>
               </tr>
               <tr>
-                  <td>ジャンル<br>(複数可)</td>
+                  <td class="post-details">ジャンル<br>(複数可)</td>
                   <td>
                       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
-                        <div class='form-check'>
+                        <div class="form-check">
                           <%= genre.label do %>
                           <%= genre.check_box %>
                           <%= genre.text %>
@@ -54,19 +58,19 @@
                 　</td>
               </tr>
               <tr>
-                  <td>合う酒</td>
-                  <td><%= f.text_field :alcohol, id:"inputAlcohol", class: 'form-control' %>に相性抜群！</td>
+                  <td class="post-details">合う酒</td>
+                  <td class="post-details"><%= f.text_field :alcohol, id:"inputAlcohol", class: 'form-control' %>に相性抜群！</td>
               </tr>
               <tr>
-                  <td>概要</td>
+                  <td class="post-details">概要</td>
                   <td><%= f.text_field :summary, id:"inputSummary", class: 'form-control' %></td>
               </tr>
               <tr>
-                  <td>材料</td>
+                  <td class="post-details">材料</td>
                   <td><%= f.text_field :ingredient, id:"inputIngredient", class: 'form-control' %></td>
               </tr>
               <tr>
-                  <td>作り方</td>
+                  <td class="post-details">作り方</td>
                   <td><%= f.text_area :cook, id:"inputCook", class: 'form-control' %></td>
               </tr>
             </tbody>

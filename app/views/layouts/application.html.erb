@@ -15,24 +15,24 @@
 
   <body>
     <header class="sticky-top">
-      <div class="container">
+      <div class="container px-1">
         <div class="user-style row mx-auto">
           <!--ログイン後、ユーザー共通ヘッダー-->
           <% if user_signed_in? %>
-          <div class="user-head col-md-1 col-3 pt-3">
+          <div class="col-md-4 col-2 mx-auto pt-3">
             <!--サイトロゴ-->
-            <a href="/"><img class="image_circle text-center"></a>
+            <a href="/" class="header-logo nav-link"><%= image_tag('logo3.png') %></a>
           </div>
-          <div class="user-head col-md-2 col-3 pt-4">
-            <a href="/public/posts" class="user-btn nav-link text-dark btn btn-sm btn-warning">探 す</a>
+          <div class="user-head col-md-1 mx-auto col-3 pt-4">
+            <a href="/public/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-users text-center"><br><span class="header-btn text-center">探す</span></i></a>
           </div>
-          <div class="user-head col-md-2 col-3 pt-4">
-            <a href="/public/posts/new" class="user-btn nav-link text-dark btn btn-sm btn-warning">投 稿</a>
+          <div class="user-head col-md-1 mx-auto col-3 pt-4">
+            <a href="/public/posts/new" class="user-btn nav-link text-white"><i class="fa-solid fa-plus text-center"><br><span class="header-btn text-center">投稿</span></i></a>
           </div>
           <!--div class="user-head col-md-2 col-6">
             <%#= link_to 'マイページ', public_user_path(current_user.id), class: 'user-btn btn btn-sm btn-warning nav-link text-dark' %>
           </div-->
-           <div class="col-md-1 col-3 pt-3">
+           <div class="col-md-2 col-3 pt-3">
             <!--userごとのプロフィール画像を取得-->
             <%= link_to public_user_path(current_user.id) do %>
               <p>
@@ -49,10 +49,10 @@
                 <tbody>
                   <tr>
                     <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
-                    <td><%#= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
+                    <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
                   </tr>
                   <tr>
-                    <td><%= f.text_field :word, placeholder:"🔍" %></td>
+                    <td><%= f.text_field :word, placeholder:" 🔍" %></td>
                     <td><%= f.submit "検索", class: "btn btn-sm btn-primary" %></td>
                   </tr>
                 </tbody>
@@ -63,44 +63,47 @@
 
           <!--ログイン後、管理者用ヘッダー-->
           <% elsif admin_signed_in? %>
-          <div class="col-md-8 col-12">
-          <h2 class="text-white text-center pt-4 pr-5">Administrator</h2>
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <ul class="navbar-nav">
-                  <li>
-                    <!--サイトロゴ-->
-                    <a href="/"><img class="image_circle"></a>
-                  </li>
-                  <li class="nav-item mt-4">
-                    <a href= "/admin/posts" class="nav-link text-dark btn btn-sm btn-warning ml-3" style="width:120px">投稿一覧</a>
-                  </li>
-                  <li class="nav-item mt-4">
-                    <a href="/admin/users" class="nav-link text-dark btn btn-sm btn-warning ml-3 mr-3" style="width:120px">会員一覧</a>
-                  </li>
-                  <li class="nav-item mt-4 mr-5">
-                    <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
-                      <p class="nav-link text-dark btn btn-sm btn-warning" style="width:120px">ログアウト</p>
-                    <% end %>
-                  </li>
-                  <!--キーワード検索機能ー-->
-                  <div class="search_form pr-5">
-                    <%= form_with url: search_path, local: true, method: :get do |f| %>
-                    <table class="table table-borderless table-inverse">
-                      <tbody>
-                        <tr>
-                          <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
-                          <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
-                        </tr>
-                        <tr>
-                          <td><%= f.text_field :word %></td>
-                          <td><%= f.submit "検索", class: "btn btn-primary" %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <% end %>
-                  </div>
-                </ul>
-            </nav>
+          <div class="col-md-1 col-3 pt-3">
+            <!--サイトロゴ-->
+            <a href="/"><img class="image_circle"></a>
+          </div>
+          
+          <div class="col-md-2 col-3 pt-4">
+            <h3 class="admin-title text-white text-center text-danger">Admin</h3>
+          </div>
+          
+          <div class="col-md-2 col-2 mx-auto pt-3">
+            <a href= "/admin/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-plus text-center"><br><span class="header-btn text-center">投稿</span></i></a>
+          </div>
+          
+          <div class="col-md-2 col-2 mx-auto pt-3">
+            <a href="/admin/users" class="user-btn nav-link text-white"><i class="fa-solid fa-users text-center"><br><span class="header-btn text-center">会員</span></i></a>
+          </div>
+          
+          <div class="col-md-2 col-2 mx-auto pt-3">
+            <%= link_to(destroy_admin_session_path, method: :delete, class:"text-white") do %>
+              <p class="user-btn nav-link text-white"><i class="fa-solid fa-right-from-bracket text-center"><br><span class="header-btn text-center">LO</span></i></p>
+            <% end %>
+          </div>
+                  
+          <div class="col-md-3 col-12">
+            <!--キーワード検索機能ー-->
+            <div class="search_form">
+              <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
+                    <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
+                  </tr>
+                  <tr>
+                    <td><%= f.text_field :word, placeholder:" 🔍" %></td>
+                    <td><%= f.submit "検索", class: "btn btn-sm btn-primary" %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <% end %>
+            </div>
           </div>
 
           <!--ログイン前、管理者、ユーザー共通ヘッダー-->

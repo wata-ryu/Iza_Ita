@@ -1,8 +1,5 @@
-<div class="container px-5 px-sm-0">
-    <h2 class="mt-5 mb-5 text-center"><%= @user.name %>の部屋</h2>
-    
-    <!--フラッシュメッセージの表示-->
-    <p class="text-center text-success"><%= flash[:notice] %></p>
+<div class="container px-2 px-sm-0">
+    <h2 class="posts-title mt-5 mb-5 text-center"><%= @user.name %>の部屋</h2>
     
     <!--強制退会機能-->
     <% if @user.is_deleted == false %>
@@ -10,80 +7,53 @@
       <% else %>
       <h3 class="text-center text-danger">退会済み</h3>
     <% end %>
-    <div class="row border-bottom">
-        <div class="col-md-10 mx-auto">
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <td style="width: 30%"><%= image_tag @user.get_profile_image(200,200), class: 'rounded-circle' %></td>
-                  <td style="width: 25%px">
-                    <h5>ニックネーム</h5>
-                    <br>
-                    <h5>自己紹介</h5>
-                  </td>
-                  <td style="width: 50%">
-                    <h5><%= @user.name %></h5>
-                    <br>
-                    <h5><%= @user.introduction %></h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>
-                    <% if @user == current_user %>
-                      <%= link_to '編　集', edit_public_user_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
-                      <% else %>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
     <div class="row">
-      <div class="col-md-10 mx-auto">
-      <h2 class="text-center mt-3 mb-3"><%= @user.name %>の投稿一覧</h2>
-          <% @posts.each do |post| %>
-          <div class="row">
-              <div class="col-md-10 mx-auto">
-                <div class="border-top">
-                  　<table class="table table-borderless">
-                      <tbody>
-                        <tr>
-                          <td style="width: 60%">
-                            <%= link_to admin_post_path(post) do %>
-                            <p class="text-center">
-                              <%= image_tag post.image, size: "200x200" %>
-                            </p>
-                            <% end %>
-                          </td>
-                          <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
-                          <td style="width: 40%">
-                              <h3><%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
-                              <% post.genres.each do |genre| %>
-                              #　<%= genre.name %><br>
-                              <% end %>
-                              <br>
-                              #　<%= post.alcohol %>に相性抜群！<br>
-                              <br>
-                              #　<%= truncate(post.summary, length: 20) %>
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><p class="text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p></td>
-                          <td>
-                            <%= post.created_at.to_s(:datetime_jp) %>
-                          </td>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-              </div>
-          </div>
-          <% end %>
+      <div class="col-md-4 col-12">
+        <p class="text-center"><%= image_tag @user.get_profile_image(200,200), class: 'rounded-circle' %></p>
       </div>
+      
+      <div class="col-md-3 col-5 mx-auto">
+        <h5 class="post-details mb-3">ニックネーム</h5>
+        <h5 class="post-details">自己紹介</h5>
+      </div>
+          
+      <div class="col-md-5 col-7 mx-auto">
+         <h5 class="post-details mb-3"><%= @user.name %></h5>
+         <h5 class="post-details"><%= @user.introduction %></h5>
+      </div>
+                
+      <div class="col-md-1 col-5 mx-auto mt-5">
+        <% if @user == current_user %>
+          <%= link_to '編　集', edit_public_user_path, class: 'btn btn-success nav-link text-white', style: 'width:100px' %>
+          <% else %>
+        <% end %>
+      </div>
+    </div>
+    
+    <h2 class="posts-title pt-2 pb-2 mt-3 mb-3 text-center border-top border-bottom"><%= @user.name %>の投稿一覧</h2>
+    <div class="row mx-auto"> 
+      <% @posts.each do |post| %>
+      <div class="col-md-6 col-12 mx-auto">
+        <%= link_to admin_post_path(post) do %>
+          <p class="text-center"><%= image_tag post.image, size: "200x200" %></p>
+        <% end %>
+        <p class="daytimes text-center"><%= post.created_at.to_s(:datetime_jp) %></p>
+        <p class="daytimes text-center">いいね <%= post.bookmarks.count %>　コメント <%= post.comments.count %></p>
+      </div>
+      
+      <div class="col-md-6 col-9 mx-auto">
+        <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
+        <h3 class="user-title text-center"><%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3>
+        <% post.genres.each do |genre| %>
+        <p class="post-details">
+          # <%= genre.name %><br>
+          # <%= post.alcohol %>に相性抜群！<br>
+          # <%= truncate(post.summary, length: 20) %>
+        </p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
       <!--ページネーション -->
       <h5 class="pb-5"><%= paginate @posts %></h5>
     </div>

@@ -1,5 +1,5 @@
 <div class="container px-3 px-sm-0">
-    <h2 class="posts-title pt-2 pb-2 border-top border-bottom mt-3 mb-3 text-center">マイページ編集</h2>
+    <h2 class="posts-title pt-2 pb-2 border-bottom mt-3 mb-3 text-center">マイページ編集</h2>
     <!--バリデーションによるエラー表示 -->
     <% if @user.errors.any? %>
       <p class="text-danger"><%= @user.errors.count %>件のエラーが発生しました！</p>
@@ -14,7 +14,9 @@
       <div class="row mx-auto mt-5 mb-5">
           <div class="col-md-3 mx-auto">
           <p class="post-details text-center">アイコン画像</p>
-              <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+              <p class="post-details text-center">
+                <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+              </p>
           </div>
           
           <div class="col-md-2 col-5 mx-auto">
@@ -30,7 +32,7 @@
     
       <% if @user == current_user %>
       <div class="row mx-auto">
-        <div class="col-md-1 col-6 mx-auto">
+        <div class="col-md-1 col-5 mx-auto">
           <p><%= f.submit "更　　新", class: 'btn btn-sm btn-success', style: 'width:110px' %></p>
           <%= link_to(destroy_user_session_path, method: :delete, class:"text-white") do %>
             <p class="btn btn-sm btn-warning text-dark nav-link text-center" style="width:110px">ログアウト</p>

@@ -1,6 +1,6 @@
 <div class="main room-image">
   <div class="container px-3 px-lg-0">
-      <h1 class="posts-title pt-2 pb-2 border-top border-bottom mt-3 mb-3 text-center"><%= @user.name %>の部屋</h1>
+      <h1 class="posts-title pt-2 pb-2 pt-3 pb-3 text-center"><%= @user.name %>の部屋</h1>
       <!--マイページ表示-->
       <div class="row mx-auto">
         <div class="col-md-4 col-12">
@@ -17,15 +17,15 @@
            <h5 class="post-details"><%= @user.introduction %></h5>
         </div>
         
-        <div class="col-md-1 col-6 mx-auto mt-3">
+        <div class="col-md-1 col-5 mx-auto mt-5">
           <!--ログインユーザーのみ編集ボタンを表示-->
           <% if @user == current_user %>
             <p class="text-center"><%= link_to '編　集', edit_public_user_path, class: 'btn btn-sm btn-success nav-link text-white', style: 'width:110px' %></p>
             <p><%= link_to 'お気に入り', public_user_users_favorite_path(@user), class: 'btn btn-sm btn-primary nav-link text-white', style: 'width:110px' %></p>
           <% end %>
         </div>
-          
       </div>
+      
       <!--ユーザーごとの投稿一覧表示-->
       <h2 class="posts-title pt-2 pb-2 mt-3 mb-3 text-center border-top border-bottom"><%= @user.name %>の投稿一覧</h2>
       <div class="row mx-auto">

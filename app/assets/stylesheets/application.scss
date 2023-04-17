@@ -13,19 +13,25 @@
  *= require_tree .
  *= require_self
  */
+ 
 /* スマホ用のCSSはメディアクエリの外に記述する0~425px */
+body{
+    margin: 0;
+    padding: 0;
+}
 .sticky-top {
-     background-color: black;
+    background-color: black;
 }
 .pagination {
     justify-content: center;
 }
-.image_circle {
-    background-image: image-url("logo2.png");
-    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+.header-logo {
+    /*background-image: image-url("logo2.png");*/
+    border-radius: 50%;/* 角丸半径を50%にする(=円形にする) */
     width:  60px;       /* ※縦横を同値に */
     height: 60px;       /* ※縦横を同値に */
-    background-position: center center;
+    /*background-size: cover;*/
+    background-position: center 40%;
 }
 .start-btn {
   width: 90px;
@@ -36,9 +42,8 @@
 .user-name {
   display:none
 }
-
-.user-head {
-    margin: 0 auto;
+.user-title {
+  font-size: 20px;
 }
 .posts-title {
   font-family: 'Alkatra', cursive;
@@ -50,21 +55,31 @@
 .daytimes {
   font-size: 12px;
 }
+.header-btn {
+  font-size: 10px;
+}
+.admin-title {
+  font-size: 23px;
+}
 
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
+ body{
+    margin: 0; padding: 0;
+ }
  .sticky-top {
      background-color: black;
  }
  .pagination {
     justify-content: center;
  }
- .image_circle {
-    background-image: image-url("logo2.png");
-    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    width: 60px;       /* ※縦横を同値に */
-    height: 60px;     /* ※縦横を同値に */
-    background-position: center 40%;
+ .header-logo {
+    /*background-image: image-url("snackers.jpg");
+    /*border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width: 100px;       /* ※縦横を同値に */
+    height: 100px;    /* ※縦横を同値に */
+    /*background-size: cover;
+    background-position: center center;*/
  }
  .start-btn {
   width: 110px;
@@ -72,12 +87,10 @@
  .user-btn {
    width: 110px;
  }
- .user-head {
-    margin: 0 auto;
- }
  .posts-title {
   font-family: 'Alkatra', cursive;
   font-size: 40px;
+  padding-left: 100px;
  }
  .post-details {
   font-size: 20px;
@@ -87,5 +100,11 @@
  }
  .daytimes {
   font-size: 15px;
+ }
+ .header-btn {
+  font-size: 15px;
+ }
+ .admin-title {
+  font-size: 30px;
  }
 }

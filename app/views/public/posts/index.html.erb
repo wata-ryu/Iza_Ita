@@ -9,7 +9,7 @@
 
   <!--ジャンル検索機能-->
   <%= form_tag public_posts_path, method: :get, class: 'boards_searchForm' do %>
-    　<div class="row mt-5 pt-5 mb-2">
+    　<div class="row mt-5 pt-4 mb-2">
         <% @genres.each do |genre| %>
           <div class="tag-box mx-auto">
             <h5 class="genre-name"><%= link_to genre.name, public_posts_path(name: genre.id), class: 'text-success' %></h5>
