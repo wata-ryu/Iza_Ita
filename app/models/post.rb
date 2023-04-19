@@ -21,6 +21,13 @@ class Post < ApplicationRecord
     validates :cook, presence: true, length: { in: 2..200 }
     validates :image, presence: true
     
+    # 公開・非公開機能の定義
+    scope :released, -> {where(release: true)}
+    scope :unreleased, -> {where(relsase: false)}
+    
+    # 公開・非公開機能
+    #enum release: {nonreleased: 0, released: 1}
+    
     def bookmarked_by?(user)
       bookmarks.exists?(user_id: user.id)
     end

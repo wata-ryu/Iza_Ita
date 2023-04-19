@@ -15,28 +15,22 @@
     
     <%= form_with model: @post, method: :patch, url: public_post_path(@post) do |f| %>
     <div class="row mx-auto">
-        <div class="col-md-3 col-12 mx-auto">
+        <div class="col-md-12 col-12 mx-auto">
           <p class="post-details text-center mt-3">投稿画像</p>
           <p class="post-details text-center"><%= f.file_field :image, accept: "image/*" %></p>
         </div>
         
-        <div class="col-md-3 col-12 mx-auto">
+        <div class="col-md-12 col-12 mx-auto">
           <p class="post-details text-center mt-3">
             <%= f.radio_button :release, 'true' %>
-            <%= f.label :release, '公開　', value: true %>
-            
+            <%= f.label :released, '公開', value: true %>
+
             <%= f.radio_button :release, 'false' %>
-            <%= f.label :release, '非公開', value: false %>
+            <%= f.label :unreleased, '非公開', value: false %>
           </p>
         </div>
         
-        <div class="col-md-3 col-12 mx-auto">
-          <p class="text-center mt-3">
-            <%= f.submit "更　新", class: 'btn btn-sm btn-success', style: 'width:80px' %>
-          </p>
-        </div>
-        
-        <div class="col-md-6 col-12">
+        <div class="col-md-7 col-12 mx-auto">
         　<table class="table table-borderless">
             <tbody>
               <tr>
@@ -75,6 +69,12 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        
+        <div class="col-md-12 col-12 mx-auto">
+          <p class="text-center">
+            <%= f.submit "更　新", class: 'btn btn-sm btn-success', style: 'width:80px' %>
+          </p>
         </div>
     </div>
     <% end %>

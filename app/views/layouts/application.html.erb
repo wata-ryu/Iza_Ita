@@ -23,10 +23,10 @@
             <!--サイトロゴ-->
             <a href="/" class="header-logo nav-link"><%= image_tag('logo3.png') %></a>
           </div>
-          <div class="user-head col-md-1 mx-auto col-3 pt-4">
+          <div class="user-head col-md-1 col-3 mx-auto pt-4">
             <a href="/public/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-users text-center"><br><span class="header-btn text-center">探す</span></i></a>
           </div>
-          <div class="user-head col-md-1 mx-auto col-3 pt-4">
+          <div class="user-head col-md-1 col-3 mx-auto pt-4">
             <a href="/public/posts/new" class="user-btn nav-link text-white"><i class="fa-solid fa-plus text-center"><br><span class="header-btn text-center">投稿</span></i></a>
           </div>
           <!--div class="user-head col-md-2 col-6">
@@ -48,11 +48,13 @@
               <table class="table table-borderless">
                 <tbody>
                   <tr>
-                    <td><%= f.select :range, options_for_select([["タイトル検索","Title"], ["ユーザー検索","User"]]) %></td>
-                    <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
+                    <td>
+                      <%= f.select :range, options_for_select([["タイトル","Title"], ["ユーザー","User"]]) %>
+                      <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %>
+                    </td>
                   </tr>
                   <tr>
-                    <td><%= f.text_field :word, placeholder:" 🔍" %></td>
+                    <td><%= f.text_field :word, placeholder:" 🔍 キーワード検索" %></td>
                     <td><%= f.submit "検索", class: "btn btn-sm btn-primary" %></td>
                   </tr>
                 </tbody>
@@ -113,10 +115,10 @@
             <a href="/"><img class="image_circle"></a>
           </div>
           <div class="col-md-4 col-4 pt-3">
-            <a href="/users/sign_up" class="start-btn nav-link text-dark btn btn-sm btn-light">新規登録</a>
+            <a href="/users/sign_up" class="nav-link text-white"><i class="fa-solid fa-pen-to-square text-center"><br><span class="header-btn text-center">新規登録</span></i></a>
           </div>
           <div class="col-md-4 col-4 pt-3">
-            <a href="/users/sign_in" class="start-btn nav-link text-dark btn btn-sm btn-light">ログイン</a>
+            <a href="/users/sign_in" class="nav-link text-white"><i class="fa-solid fa-right-to-bracket text-center"><br><span class="header-btn text-center">ログイン</span></i></a>
           </div>
           <% end %>
         </div>

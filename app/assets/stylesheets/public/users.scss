@@ -4,7 +4,7 @@
 
 /* スマホ用のCSSはメディアクエリの外に記述する0~425px */
 .room-image {
-    height: 480px;
+    height: 400px;
     background-image: image-url("room4.png");
     background-size: cover;
     background-position: center center;
@@ -14,7 +14,7 @@
 /*  col-xs（426px以上）のサイズ用　*/
 @media screen and (min-width: 426px) {
   .room-image {
-    height: 480px;
+    height: 350px;
     background-image: image-url("room4.png");
     background-size: cover;
     background-position: 100% 75%;

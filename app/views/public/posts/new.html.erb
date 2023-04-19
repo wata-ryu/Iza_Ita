@@ -19,10 +19,10 @@
             <p class="post-details text-center pt-3"><%= f.file_field :image, accept: "image/*" %></p>
             <h5 class="post-details pt-3 text-center">
               <%= f.radio_button :release, 'true' %>
-              <%= f.label :release, '公開　', value: true %>
+              <%= f.label :released, '公開', value: true %>
 
               <%= f.radio_button :release, 'false' %>
-              <%= f.label :release, '非公開', value: false %>
+              <%= f.label :unreleased, '非公開', value: false %>
             </h5>
             <p class="pt-3 text-center"><%= f.submit '投稿する', class: 'btn btn-success' %></p>
           </div>

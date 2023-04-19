@@ -1,4 +1,11 @@
 /* スマホ用のCSSはメディアクエリの外に記述する0~425px */
+.main-image {
+  height: 725px;
+  background-image: image-url("sign_up2.png");
+  /*background-size: cover;*/
+  background-position: bottom;
+  width: 100%;
+}
 .title {
   font-size: 25px;
 }
@@ -14,6 +21,7 @@
     background-image: image-url("sign_up2.png");
     background-size: cover;
     background-position: bottom;
+    width: 100%;
   }
   .title {
     font-size: 40px;

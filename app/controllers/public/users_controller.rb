@@ -3,8 +3,14 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    #.order("id DESC") = 最新が一番上に来るように + kaminariページネーション
-    @posts = @user.posts.order("id DESC").page(params[:page])
+    
+    if @user == current_user
+      #本人が見る非公開を含む投稿一覧（最新を上に表示 + kaminariでのページネーション）
+      @posts = @user.posts.order("id DESC").page(params[:page])
+    else
+      #他人が見る個人の投稿一覧（公開設定した投稿のみ表示 + 最新を上に表示 + kaminariでのページネーション）
+      @posts = @user.posts.released.order("id DESC").page(params[:page])
+    end
   end
   
   def favorite
