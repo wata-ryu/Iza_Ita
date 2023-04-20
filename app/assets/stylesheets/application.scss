@@ -26,12 +26,12 @@ body{
     justify-content: center;
 }
 .header-logo {
-    /*background-image: image-url("logo2.png");*/
+    /*background-image: image-url("SNACKERS.png");*/
     border-radius: 50%;/* 角丸半径を50%にする(=円形にする) */
     width:  60px;       /* ※縦横を同値に */
     height: 60px;       /* ※縦横を同値に */
     /*background-size: cover;*/
-    background-position: center 40%;
+    background-position: center center;
 }
 .user-btn {
   width: 70px;

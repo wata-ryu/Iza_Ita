@@ -19,14 +19,14 @@
         <div class="user-style row mx-auto">
           <!--ログイン後、ユーザー共通ヘッダー-->
           <% if user_signed_in? %>
-          <div class="col-md-4 col-2 mx-auto pt-3">
+          <div class="col-md-3 col-3 mx-auto pt-3">
             <!--サイトロゴ-->
-            <a href="/" class="header-logo nav-link"><%= image_tag('logo3.png') %></a>
+            <a href="/" class="header-logo"><%= image_tag('SNACKERS2.png') %></a>
           </div>
-          <div class="user-head col-md-1 col-3 mx-auto pt-4">
+          <div class="user-head col-md-2 col-2 mx-auto pt-4">
             <a href="/public/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-users text-center"><br><span class="header-btn text-center">探す</span></i></a>
           </div>
-          <div class="user-head col-md-1 col-3 mx-auto pt-4">
+          <div class="user-head col-md-3 col-2 mx-auto pt-4">
             <a href="/public/posts/new" class="user-btn nav-link text-white"><i class="fa-solid fa-plus text-center"><br><span class="header-btn text-center">投稿</span></i></a>
           </div>
           <!--div class="user-head col-md-2 col-6">
@@ -41,7 +41,7 @@
               </p>
             <% end %>
           </div>
-          <div class="col-md-3 col-12">
+          <div class="col-md-2 col-12">
             <!--キーワード検索機能ー-->
             <div class="search_form">
               <%= form_with url: search_path, local: true, method: :get do |f| %>
