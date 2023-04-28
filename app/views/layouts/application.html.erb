@@ -21,7 +21,7 @@
           <% if user_signed_in? %>
           <div class="col-md-3 col-3 mx-auto pt-3">
             <!--サイトロゴ-->
-            <a href="/" class="header-logo"><%= image_tag('SNACKERS2.png') %></a>
+            <a href="/" class="header-logo"><%= image_tag('LOGO.png') %></a>
           </div>
           <div class="user-head col-md-2 col-2 mx-auto pt-4">
             <a href="/public/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-users text-center"><br><span class="header-btn text-center">探す</span></i></a>
@@ -112,7 +112,7 @@
           <% else %>
           <div class="logo col-md-4 col-4 pt-1 pb-1">
             <!--サイトロゴ-->
-            <a href="/"><img class="image_circle"></a>
+            <a href="/" class="header-logo"><%= image_tag('LOGO.png') %></a>
           </div>
           <div class="col-md-4 col-4 pt-3">
             <a href="/users/sign_up" class="nav-link text-white"><i class="fa-solid fa-pen-to-square text-center"><br><span class="header-btn text-center">新規登録</span></i></a>
