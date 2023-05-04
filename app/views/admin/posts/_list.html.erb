@@ -25,11 +25,10 @@
     <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
     <h3 class="user-title text-center"><%= link_to post.title, admin_post_path(post),class: 'text-dark' %></h3><br>
     <% post.genres.each do |genre| %>
-    <p class="post-details">
-      # <%= genre.name %><br>
-      # <%= post.alcohol %>に相性抜群！<br>
-      # <%= truncate(post.summary, length: 40) %>
+    <p class="post-details"># <%= genre.name %></p>
     <% end %>
+    <p class="post-details"># <%= post.alcohol %>に相性抜群！</p>
+    <p class="post-details"># <%= truncate(post.summary, length: 40) %></p>
   </div>
 </div>
 <% end %>

@@ -65,17 +65,12 @@
 
           <!--ログイン後、管理者用ヘッダー-->
           <% elsif admin_signed_in? %>
-          <div class="col-md-1 col-3 pt-3">
-            <!--サイトロゴ-->
-            <a href="/"><img class="image_circle"></a>
-          </div>
-          
-          <div class="col-md-2 col-3 pt-4">
+          <div class="col-md-3 col-3 pt-4">
             <h3 class="admin-title text-white text-center text-danger">Admin</h3>
           </div>
           
           <div class="col-md-2 col-2 mx-auto pt-3">
-            <a href= "/admin/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-plus text-center"><br><span class="header-btn text-center">投稿</span></i></a>
+            <a href= "/admin/posts" class="user-btn nav-link text-white"><i class="fa-solid fa-magnifying-glass text-center"><br><span class="header-btn text-center">探す</span></i></a>
           </div>
           
           <div class="col-md-2 col-2 mx-auto pt-3">
@@ -99,7 +94,7 @@
                     <td><%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %></td>
                   </tr>
                   <tr>
-                    <td><%= f.text_field :word, placeholder:" 🔍" %></td>
+                    <td><%= f.text_field :word, placeholder:" 🔍 キーワード検索" %></td>
                     <td><%= f.submit "検索", class: "btn btn-sm btn-primary" %></td>
                   </tr>
                 </tbody>
@@ -114,10 +109,10 @@
             <!--サイトロゴ-->
             <a href="/" class="header-logo"><%= image_tag('LOGO.png') %></a>
           </div>
-          <div class="col-md-4 col-4 pt-3">
+          <div class="col-md-4 col-4 pt-2">
             <a href="/users/sign_up" class="nav-link text-white"><i class="fa-solid fa-pen-to-square text-center"><br><span class="header-btn text-center">新規登録</span></i></a>
           </div>
-          <div class="col-md-4 col-4 pt-3">
+          <div class="col-md-4 col-4 pt-2">
             <a href="/users/sign_in" class="nav-link text-white"><i class="fa-solid fa-right-to-bracket text-center"><br><span class="header-btn text-center">ログイン</span></i></a>
           </div>
           <% end %>

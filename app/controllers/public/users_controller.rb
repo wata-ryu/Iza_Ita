@@ -29,7 +29,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-    #user情報更新成功のflash message
+      #user情報更新成功のflash message
       flash[:notice] = "プロフィールが更新されました！"
       redirect_to public_user_path(current_user.id)
     else

@@ -1,6 +1,7 @@
 <div class="main room-image">
   <div class="container px-3 px-lg-0">
       <h1 class="posts-title pt-2 pb-2 pt-3 pb-3 text-center"><%= @user.name %>の部屋</h1>
+      <p class="text-center text-success"><%= flash[:notice] %></p>
       <!--マイページ表示-->
       <div class="row mx-auto">
         <div class="col-md-4 col-12">
@@ -27,9 +28,9 @@
       </div>
       
       <!--ユーザーごとの投稿一覧表示-->
-      <h2 class="posts-title pt-2 pb-2 mt-3 mb-3 text-center border-top border-bottom"><%= @user.name %>の投稿一覧</h2>
-      <div class="row mx-auto">
-        <% @posts.each do |post| %>
+      <h2 class="posts-title pt-3 text-center border-top"><%= @user.name %>の投稿一覧</h2>
+      <% @posts.each do |post| %>
+      <div class="row mx-auto pt-3 border-top">
         <div class="col-md-6 col-12 mx-auto">
           <%= link_to public_post_path(post) do %>
             <p class="text-center"><%= image_tag post.image, size: "200x200" %></p>
@@ -42,15 +43,13 @@
           <!--取得したtitle名をリンクにしてbook詳細画面へ移行-->
           <h3 class="user-title text-center"><%= link_to post.title, public_post_path(post),class: 'text-dark' %></h3>
           <% post.genres.each do |genre| %>
-          <p class="post-details">
-            # <%= genre.name %><br>
-            # <%= post.alcohol %>に相性抜群！<br>
-            # <%= truncate(post.summary, length: 20) %>
-          </p>
+          <p class="post-details"># <%= genre.name %></p>
           <% end %>
+          <p class="post-details"># <%= post.alcohol %>に相性抜群！</p>
+          <p class="post-details"># <%= truncate(post.summary, length: 40) %></p>
         </div>
-        <% end %>
       </div>
+      <% end %>
       <h5 class="pb-5"><%= paginate @posts %></h5>
   </div>
 </div>
