@@ -40,3 +40,5 @@ yarn-debug.log*
 .yarn-integrity
 # 追記
 /.env
+/vendor/*
+!/vendor/.keep
