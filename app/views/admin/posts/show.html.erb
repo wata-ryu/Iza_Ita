@@ -47,29 +47,33 @@
       </div>
     </div>
     
-    <div class="col-md-12 col-12 mx-auto border-top">
-      <h4 class="comment-title text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
-      <!--コメント表示-->
-      <% @comments.each do |comment| %>
-      <div class="row mx-auto pt-3 pb-3 border-top">
-        <div class="col-md-3 col-3 mx-auto">
-          <p class="post-details text-center">
-            <%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %><br>
-            <%= comment.user.name %>
-          </p>
-        </div>
-        
-        <div class="col-md-6 col-9 mx-auto">
-          <p class="post-details"><%= comment.comment %></p>
-          <p class="daytimes"><%= comment.created_at.to_s(:datetime_jp) %></p>
-        </div>
-        
-        <div class="col-md-3 col-3 mx-auto pb-3">
-          <!--コメント強制削除-->
-          <%= link_to(admin_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
-            <span>強制削除</span>
-          <% end %>
-        </div>
-      <% end %>
+    <div class="row mx-auto">
+      <div class="col-md-12 col-12 mx-auto border-top">
+        <h4 class="comment-title text-center mt-3 mb-3">コメント　<%= @post.comments.count %> 件　（2~100字）</h4>
+      </div>
     </div>
+    
+    <!--コメント表示-->
+    <% @comments.each do |comment| %>
+    <div class="row mx-auto pt-3 pb-3 border-top">
+      <div class="col-md-3 col-3 mx-auto">
+        <p class="post-details text-center">
+          <%= image_tag comment.user.get_profile_image(50,50), class: 'rounded-circle' %><br>
+          <%= comment.user.name %>
+        </p>
+      </div>
+      
+      <div class="col-md-6 col-9 mx-auto">
+        <p class="post-details"><%= comment.comment %></p>
+        <p class="daytimes"><%= comment.created_at.to_s(:datetime_jp) %></p>
+      </div>
+      
+      <div class="col-md-3 col-3 mx-auto pb-3">
+        <!--コメント強制削除-->
+        <%= link_to(admin_post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-sm btn-danger nav-link text-white', style: 'width:100px', "data-confirm" => "本当に削除しますか？") do %>
+          <span>強制削除</span>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
 </div>
